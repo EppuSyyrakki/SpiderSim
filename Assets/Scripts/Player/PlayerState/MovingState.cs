@@ -6,12 +6,14 @@ namespace SpiderSim.Player.PlayerState
 	{
 		public IPlayerState Update(PlayerController player, PlayerInput input)
 		{
+			
 			bool grounded = false;
 			Transform self = player.transform;
 
 			// if we can find ground, align our up to ground's normal
 			if (GetGroundNormal(player, out Vector3 normal))
 			{
+				// TODO recalculate distance from ground
 				// TODO Lerp this rotation
 				self.up = normal;
 				grounded = true;
@@ -59,7 +61,6 @@ namespace SpiderSim.Player.PlayerState
 
 			if (Physics.Raycast(origin, direction, out var hit, player.groundRayDist, ownLayer))
 			{
-				Debug.Log("Walking on " + hit.transform.name);
 				normal = hit.normal;
 				return true;
 			}
