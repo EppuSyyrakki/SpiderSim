@@ -15,6 +15,8 @@ namespace SpiderSim.Player
 		public float sphereCastRadius = 2f, sphereCastOffset = 0.75f;
 		public float jumpForce = 100f;
 		public bool showDebugGizmos;
+
+		[HideInInspector]
 		public Rigidbody rb;
 
 		// 1 = ground ray origin

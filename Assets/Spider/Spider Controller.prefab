@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 276284874467816837}
   - component: {fileID: 8242045463044528566}
   - component: {fileID: 796718073}
+  - component: {fileID: 6493856530494105937}
   m_Layer: 0
   m_Name: Spider Spectating Camera
   m_TagString: Untagged
@@ -107,6 +108,38 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   rayRadiusObstructionHiding: 0.3
+--- !u!114 &6493856530494105937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7644836829583018044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &8634589291867471547
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,6 +4210,7 @@ GameObject:
   - component: {fileID: 8634589293613505105}
   - component: {fileID: 8634589293613505111}
   - component: {fileID: 308868170}
+  - component: {fileID: 4104822328290089619}
   m_Layer: 31
   m_Name: Spider Controller Camera
   m_TagString: MainCamera
@@ -4282,6 +4316,38 @@ MonoBehaviour:
     m_Bits: 1
   rayRadiusObstructionHiding: 0.05
   rollDamp: 0.5
+--- !u!114 &4104822328290089619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634589293613505106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &8634589293781861511
 GameObject:
   m_ObjectHideFlags: 0
@@ -4332,7 +4398,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4df50e2820a27024bb64a579ad6a1ea9, type: 2}
+  - {fileID: 2100000, guid: a8ebcf331a0c1e94a9ed864473206ea8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

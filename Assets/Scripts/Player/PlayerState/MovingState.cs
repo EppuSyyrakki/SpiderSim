@@ -30,7 +30,7 @@ namespace SpiderSim.Player.PlayerState
 			{
 				return new FallingState();
 			}
-			
+
 			if (input.Move != Vector3.zero)
 			{
 				Vector3 moveOffset = self.TransformVector(input.Move * player.groundSpeed * Time.deltaTime);
@@ -61,6 +61,7 @@ namespace SpiderSim.Player.PlayerState
 
 			if (Physics.Raycast(origin, direction, out var hit, player.groundRayDist, ownLayer))
 			{
+				Debug.Log("Walking on " + hit.transform.gameObject.name);
 				normal = hit.normal;
 				return true;
 			}
