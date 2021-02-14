@@ -23,8 +23,8 @@ namespace SpiderSim.Player
 		
 		// fields to determine step order
 		[HideInInspector]
-		public bool canMove;
-		private bool _isMoving;
+		public bool canStartStep;
+		private bool _isStepping;
 		private Leg oppositeLeg;
 
 		private void Start()
@@ -41,22 +41,22 @@ namespace SpiderSim.Player
 		{
 			float distanceToTarget = Vector3.Distance(_currentTarget.position, futureTarget.position);
 			
-			if (distanceToTarget > _player.stepDistance && canMove)
+			if (distanceToTarget > _player.stepDistance && canStartStep)
 			{
 				AssignStepTargets();
-				_isMoving = true;
+				_isStepping = true;
 			}
 
-			if (_isMoving)
+			if (_isStepping)
 			{
-				canMove = false;
+				canStartStep = false;
 				float slerpT = (Time.time - _stepStartTime) / _player.stepFreq;
-				_currentTarget.position = Vector3.Slerp(_prevRelCenter, _nextRelCenter, slerpT) +_stepCenter;
+				_currentTarget.position = Vector3.Slerp(_prevRelCenter, futureTarget.position - _stepCenter, slerpT) +_stepCenter;
 
-				if (_currentTarget.position == _nextTarget)
+				if (slerpT >= 1)
 				{
-					oppositeLeg.canMove = true;
-					_isMoving = false;
+					oppositeLeg.canStartStep = true;
+					_isStepping = false;
 				}
 			}
 
@@ -73,11 +73,9 @@ namespace SpiderSim.Player
 		{
 			_stepStartTime = Time.time;
 			_previousTarget = _currentTarget.position;
-			_nextTarget = futureTarget.position;
 			_stepCenter = (_previousTarget + _nextTarget) * 0.5f;
 			_stepCenter -= _player.transform.up.normalized * _player.stepArc;
 			_prevRelCenter = _previousTarget - _stepCenter;
-			_nextRelCenter = _nextTarget - _stepCenter;
 		}
 
 		private void InitStepOrder()
@@ -86,13 +84,13 @@ namespace SpiderSim.Player
 
 			if (name.Contains(".R_end"))
 			{
-				if (name.Contains("2.3") || name.Contains("4.3")) canMove = true;
+				if (name.Contains("2.3") || name.Contains("4.3")) canStartStep = true;
 
 				FindOppositeLeg(".L");
 			}
 			else if (name.Contains(".L_end"))
 			{
-				if (name.Contains("1.3") || name.Contains("3.3")) canMove = true;
+				if (name.Contains("1.3") || name.Contains("3.3")) canStartStep = true;
 
 				FindOppositeLeg(".R");
 			}
