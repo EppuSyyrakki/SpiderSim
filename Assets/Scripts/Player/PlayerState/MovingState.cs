@@ -4,25 +4,22 @@ namespace SpiderSim.Player.PlayerState
 {
 	public class MovingState : IPlayerState
 	{
+		private Transform self;
+		private Transform spider;
+
 		public IPlayerState Update(PlayerController player, PlayerInput input)
 		{
-			
-			bool grounded = false;
-			Transform self = player.transform;
-
 			// if we can find ground, align our up to ground's normal
 			if (GetGroundNormal(player, out Vector3 normal))
 			{
 				// TODO recalculate distance from ground
 				// TODO Lerp this rotation
-				self.up = normal;
-				grounded = true;
 			}
 
 			if (input.Move != Vector3.zero)
 			{
 				Vector3 moveOffset = self.TransformVector(input.Move * player.groundSpeed * Time.deltaTime);
-				self.position += moveOffset;
+				spider.position += moveOffset;
 			}
 			
 			// TODO: Lerp turn toward move direction
@@ -36,12 +33,6 @@ namespace SpiderSim.Player.PlayerState
 			if (input.Jump == PlayerInput.Button.Down)
 			{
 				return new FallingState(true);
-			}
-
-			// if we can't find ground, fall without jumping
-			if (!grounded)
-			{
-				return new FallingState();
 			}
 
 			return null;
@@ -72,6 +63,8 @@ namespace SpiderSim.Player.PlayerState
 		public void OnStateEnter(PlayerController player)
 		{
 			Debug.Log("Entering moving state");
+			self = player.transform;
+			spider = player.spider.transform;
 		}
 
 		public void OnStateExit(PlayerController player)

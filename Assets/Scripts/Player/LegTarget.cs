@@ -7,20 +7,20 @@ namespace SpiderSim.Player
 {
 	public class LegTarget : MonoBehaviour
 	{
-		private PlayerController player;
+		private static PlayerController _player;
 		private Vector3[] debugVectors = new Vector3[2];
-		
+
 		// Start is called before the first frame update
 		void Awake()
 		{
-			player = FindObjectOfType<PlayerController>();
+			if (_player == null) _player = FindObjectOfType<PlayerController>();
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
 			// Raycast in player's down direction to nearest surface
-			Vector3 ground = GetGroundPoint();
+			Vector3 ground = GetGroundPoint(transform.position);
 
 			if (ground != transform.position)
 			{
@@ -28,19 +28,19 @@ namespace SpiderSim.Player
 			}
 		}
 
-		private Vector3 GetGroundPoint()
+		private Vector3 GetGroundPoint(Vector3 position)
 		{
-			Vector3 ground = transform.position;
+			Vector3 ground = position;
 			// get the down direction relative to our rotation
-			Vector3 direction = -player.transform.up.normalized;
-			Vector3 origin = transform.position - direction * player.groundRayOffset;
-			LayerMask ownLayer = player.gameObject.layer;
+			Vector3 direction = -_player.transform.up.normalized;
+			Vector3 origin = position - direction * _player.legCastOffset;
+			LayerMask ownLayer = _player.gameObject.layer;
 
 			// Debugging tools to see the Raycast
 			debugVectors[0] = origin;
 			debugVectors[1] = direction;
 
-			if (Physics.Raycast(origin, direction, out var hit, player.groundRayDist, ownLayer))
+			if (Physics.Raycast(origin, direction, out var hit, _player.legCastDist, ownLayer))
 			{
 				ground = hit.point;
 			}
@@ -52,9 +52,9 @@ namespace SpiderSim.Player
 		{
 #if UNITY_EDITOR
 			Gizmos.color = Color.red;
-			if (player != null && player.showDebugGizmos)
+			if (_player != null && _player.showDebugGizmos)
 			{
-				Gizmos.DrawRay(debugVectors[0], debugVectors[1] * player.groundRayDist);
+				Gizmos.DrawRay(debugVectors[0], debugVectors[1] * _player.groundRayDist);
 			}
 #endif
 		}

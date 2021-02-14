@@ -7,27 +7,45 @@ namespace SpiderSim.Player
 {
 	public class PlayerController : MonoBehaviour
 	{
+		#region PlayerState fields
+
 		private readonly PlayerInput _input = new PlayerInput();
 		private IPlayerState _state;
-		
-		public float groundSpeed = 100f, turnSpeed = 10f;
-		public float groundRayDist = 1f, groundRayOffset = 0.5f;
-		public float sphereCastRadius = 2f, sphereCastOffset = 0.75f;
-		public float jumpForce = 100f;
-		public float stepDistance = 0.75f;
-		public bool showDebugGizmos;
 
+		#endregion
+		#region Public control fields
+
+		public float groundSpeed = 4f, turnSpeed = 10f;
+		public float groundRayDist = 1f, groundRayOffset = 0.5f;
+		public float legCastDist = 1.2f, legCastOffset = 0.4f;
+		public float sphereCastRadius = 1f, sphereCastOffset = 0.5f;
+		public float jumpForce = 100f;
+		[Range(0.1f, 1f)]
+		public float stepDistance = 0.75f;
+		[Range(0.05f, 0.5f)]
+		public float stepFreq = 0.5f;
+		[Range(0.01f, 1f)]
+		public float stepArc = 1f;
+
+		#endregion
+		#region Public components
+		
 		[HideInInspector]
 		public Rigidbody rb;
 		[HideInInspector]
 		public Transform spider;
+
+		#endregion
+		#region Debugging tools
 
 		// 1 = ground ray origin
 		// 2 = ground ray direction
 		// 3 = sphere cast origin
 		[HideInInspector]
 		public Vector3[] debugVectors = new Vector3[3];
-
+		public bool showDebugGizmos;
+		#endregion
+		
 		private void Awake()
 		{
 			rb = GetComponent<Rigidbody>();
