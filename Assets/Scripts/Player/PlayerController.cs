@@ -9,15 +9,18 @@ namespace SpiderSim.Player
 	{
 		private readonly PlayerInput _input = new PlayerInput();
 		private IPlayerState _state;
-
+		
 		public float groundSpeed = 100f, turnSpeed = 10f;
-		public float groundRayDist = 0.5f, groundRayOffset = 0.3f;
+		public float groundRayDist = 1f, groundRayOffset = 0.5f;
 		public float sphereCastRadius = 2f, sphereCastOffset = 0.75f;
 		public float jumpForce = 100f;
+		public float stepDistance = 0.75f;
 		public bool showDebugGizmos;
 
 		[HideInInspector]
 		public Rigidbody rb;
+		[HideInInspector]
+		public Transform spider;
 
 		// 1 = ground ray origin
 		// 2 = ground ray direction
@@ -28,6 +31,7 @@ namespace SpiderSim.Player
 		private void Awake()
 		{
 			rb = GetComponent<Rigidbody>();
+			spider = transform.GetChild(0);
 			// set Moving as the default state
 			_state = new MovingState();
 		}
@@ -55,6 +59,7 @@ namespace SpiderSim.Player
 
 		private void OnDrawGizmos()
 		{
+#if UNITY_EDITOR
 			if (showDebugGizmos)
 			{
 				Gizmos.color = Color.red;
@@ -74,6 +79,7 @@ namespace SpiderSim.Player
 						break;
 				}
 			}
+#endif
 		}
 	}
 }

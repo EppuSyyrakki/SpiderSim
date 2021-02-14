@@ -17,7 +17,10 @@ namespace SpiderSim
 		private Vector3 lookOffset = Vector3.up;
 
 		[SerializeField]
-		private float followSpeed;
+		private float eventSpeed;
+
+		[SerializeField]
+		private float moveSpeed = 0.5f;
 
 		private float _eventTime;
 
@@ -29,10 +32,9 @@ namespace SpiderSim
 		// Update is called once per frame
 		void Update()
 		{
-			float eventRatio = (Time.time - _eventTime) / followSpeed;
-			Vector3 currentPos = transform.position;
+			float eventRatio = (Time.time - _eventTime) / eventSpeed;
 			Vector3 targetPos = target.position + offsetFromTarget;
-			transform.position = Vector3.Lerp(currentPos, targetPos, eventRatio);
+			transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed);
 			Vector3 lookTarget = target.position + lookOffset;
 			transform.LookAt(lookTarget);
 

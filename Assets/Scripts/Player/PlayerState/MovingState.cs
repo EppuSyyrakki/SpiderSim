@@ -19,18 +19,6 @@ namespace SpiderSim.Player.PlayerState
 				grounded = true;
 			}
 
-			// if player has pressed jump this frame, fall with jump
-			if (input.Jump == PlayerInput.Button.Down)
-			{
-				return new FallingState(true);
-			}
-
-			// if we can't find ground, fall without jumping
-			if (!grounded)
-			{
-				return new FallingState();
-			}
-
 			if (input.Move != Vector3.zero)
 			{
 				Vector3 moveOffset = self.TransformVector(input.Move * player.groundSpeed * Time.deltaTime);
@@ -42,6 +30,18 @@ namespace SpiderSim.Player.PlayerState
 			if (input.AimWeb == PlayerInput.Button.Down)
 			{
 				return new AimingState();
+			}
+
+			// if player has pressed jump this frame, fall with jump
+			if (input.Jump == PlayerInput.Button.Down)
+			{
+				return new FallingState(true);
+			}
+
+			// if we can't find ground, fall without jumping
+			if (!grounded)
+			{
+				return new FallingState();
 			}
 
 			return null;
