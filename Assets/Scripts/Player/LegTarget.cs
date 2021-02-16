@@ -54,7 +54,7 @@ namespace SpiderSim.Player
 			Gizmos.color = Color.red;
 			if (_player != null && _player.showDebugGizmos)
 			{
-				Gizmos.DrawRay(debugVectors[0], debugVectors[1] * _player.groundRayDist);
+				Gizmos.DrawRay(debugVectors[0], debugVectors[1] * _player.groundCastDist);
 			}
 #endif
 		}

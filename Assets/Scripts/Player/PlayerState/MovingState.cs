@@ -1,25 +1,22 @@
+using System;
 using UnityEngine;
 
 namespace SpiderSim.Player.PlayerState
 {
 	public class MovingState : IPlayerState
 	{
-		private Transform self;
-		private Transform spider;
-
-		public IPlayerState Update(PlayerController player, PlayerInput input)
+		private PlayerController _player;
+		private Transform _body;
+		
+		public IPlayerState Update(PlayerInput input)
 		{
-			// if we can find ground, align our up to ground's normal
-			if (GetGroundNormal(player, out Vector3 normal))
+			if (input.Move != Vector3.zero && GetGroundNormal(out var normal))
 			{
-				// TODO recalculate distance from ground
-				// TODO Lerp this rotation
-			}
-
-			if (input.Move != Vector3.zero)
-			{
-				Vector3 moveOffset = self.TransformVector(input.Move * player.groundSpeed * Time.deltaTime);
-				spider.position += moveOffset;
+				// must be negative because model is rotated 180 degrees
+				Vector3 transformed = -_body.TransformVector(input.Move * _player.groundSpeed * Time.deltaTime);
+				Vector3 offset = new Vector3(transformed.x, transformed.y, transformed.z);
+				_body.position += offset;
+				_body.up = normal;
 			}
 			
 			// TODO: Lerp turn toward move direction
@@ -38,21 +35,22 @@ namespace SpiderSim.Player.PlayerState
 			return null;
 		}
 
-		private bool GetGroundNormal(PlayerController player, out Vector3 normal)
+		private bool GetGroundNormal(out Vector3 normal)
 		{
-			Transform self = player.transform;
-			Vector3 origin = self.TransformPoint(self.up * player.groundRayOffset);
-			Vector3 direction = -self.up.normalized;
-			LayerMask ownLayer = player.gameObject.layer;
-			normal = Vector3.positiveInfinity;
+			normal = _body.position;
+			// get the down direction relative to our rotation
+			Vector3 direction = -_body.transform.up.normalized;
+			Vector3 origin = normal - direction * _player.groundCastOffset;
+			LayerMask ownLayer = _player.gameObject.layer;
 
+#if UNITY_EDITOR
 			// Debugging tools to see the Raycast
-			player.debugVectors[0] = origin;
-			player.debugVectors[1] = direction;
+			_player.debugVectors[0] = origin;
+			_player.debugVectors[1] = direction;
+#endif
 
-			if (Physics.Raycast(origin, direction, out var hit, player.groundRayDist, ownLayer))
+			if (Physics.Raycast(origin, direction, out var hit, _player.groundCastDist, ownLayer))
 			{
-				Debug.Log("Walking on " + hit.transform.gameObject.name);
 				normal = hit.normal;
 				return true;
 			}
@@ -60,11 +58,23 @@ namespace SpiderSim.Player.PlayerState
 			return false;
 		}
 
+		private float GetBodyHeight()
+		{
+			float y = 0;
+
+			foreach (var legTarget in _player.legTargets)
+			{
+				y += legTarget.transform.position.y;
+			}
+
+			return Mathf.Round(y / _player.legTargets.Count * 100f) / 100f;
+		}
+
 		public void OnStateEnter(PlayerController player)
 		{
 			Debug.Log("Entering moving state");
-			self = player.transform;
-			spider = player.spider.transform;
+			_player = player;
+			_body = player.body;
 		}
 
 		public void OnStateExit(PlayerController player)

@@ -7,16 +7,16 @@ namespace SpiderSim.Player
 {
 	public class PlayerController : MonoBehaviour
 	{
-		#region PlayerState fields
+		#region Private fields
 
 		private readonly PlayerInput _input = new PlayerInput();
 		private IPlayerState _state;
-
+		
 		#endregion
-		#region Public control fields
+		#region Public fields
 
 		public float groundSpeed = 4f, turnSpeed = 10f;
-		public float groundRayDist = 1f, groundRayOffset = 0.5f;
+		public float groundCastDist = 1f, groundCastOffset = 0.5f;
 		public float legCastDist = 1.2f, legCastOffset = 0.4f;
 		public float sphereCastRadius = 1f, sphereCastOffset = 0.5f;
 		public float jumpForce = 100f;
@@ -33,9 +33,13 @@ namespace SpiderSim.Player
 		[HideInInspector]
 		public Rigidbody rb;
 		[HideInInspector]
-		public Transform spider;
+		public Transform body;
+		[HideInInspector]
+		public List<LegTarget> legTargets = new List<LegTarget>();
 
 		#endregion
+
+#if UNITY_EDITOR
 		#region Debugging tools
 
 		// 1 = ground ray origin
@@ -45,11 +49,13 @@ namespace SpiderSim.Player
 		public Vector3[] debugVectors = new Vector3[3];
 		public bool showDebugGizmos;
 		#endregion
-		
+#endif
+
 		private void Awake()
 		{
 			rb = GetComponent<Rigidbody>();
-			spider = transform.GetChild(0);
+			body = transform.GetChild(0);
+			legTargets.AddRange(GetComponentsInChildren<LegTarget>());
 			// set Moving as the default state
 			_state = new MovingState();
 		}
@@ -64,7 +70,7 @@ namespace SpiderSim.Player
 		{
 			// Update member classes
 			_input.Update();
-			IPlayerState newState = _state.Update(this, _input);
+			IPlayerState newState = _state.Update(_input);
 
 			// If the state update resulted in a new state, set that as the current state.
 			if (newState != null)
@@ -90,7 +96,7 @@ namespace SpiderSim.Player
 				switch (stateName)
 				{
 					case "MovingState":
-						Gizmos.DrawRay(debugVectors[0], debugVectors[1] * groundRayDist);
+						Gizmos.DrawRay(debugVectors[0], debugVectors[1] * groundCastDist);
 						break;
 					case "FallingState":
 						Gizmos.DrawWireSphere(debugVectors[2], sphereCastRadius);
