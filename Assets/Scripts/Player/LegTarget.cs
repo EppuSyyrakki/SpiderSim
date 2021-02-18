@@ -8,12 +8,16 @@ namespace SpiderSim.Player
 	public class LegTarget : MonoBehaviour
 	{
 		private static PlayerController _player;
+
+#if UNITY_EDITOR
 		private Vector3[] debugVectors = new Vector3[2];
+#endif
 
 		// Start is called before the first frame update
 		void Awake()
 		{
 			if (_player == null) _player = FindObjectOfType<PlayerController>();
+			if (_player.showDebugGizmos) GetComponent<MeshRenderer>().enabled = true;
 		}
 
 		// Update is called once per frame
@@ -36,9 +40,11 @@ namespace SpiderSim.Player
 			Vector3 origin = position - direction * _player.legCastOffset;
 			LayerMask ownLayer = _player.gameObject.layer;
 
+#if UNITY_EDITOR
 			// Debugging tools to see the Raycast
 			debugVectors[0] = origin;
 			debugVectors[1] = direction;
+#endif
 
 			if (Physics.Raycast(origin, direction, out var hit, _player.legCastDist, ownLayer))
 			{
@@ -54,7 +60,7 @@ namespace SpiderSim.Player
 			Gizmos.color = Color.red;
 			if (_player != null && _player.showDebugGizmos)
 			{
-				Gizmos.DrawRay(debugVectors[0], debugVectors[1] * _player.groundCastDist);
+				Gizmos.DrawRay(debugVectors[0], debugVectors[1] * _player.legCastDist);
 			}
 #endif
 		}
