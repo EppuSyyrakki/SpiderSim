@@ -11,7 +11,6 @@ namespace SpiderSim.Player.PlayerState
 		{
 			// TODO: Aim with CamHorizontal and CamVertical axises
 			
-
 			if (input.AimWeb == PlayerInput.Button.Up) 
 			{
 				return new MovingState();

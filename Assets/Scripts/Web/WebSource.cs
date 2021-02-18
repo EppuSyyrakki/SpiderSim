@@ -10,25 +10,25 @@ namespace SpiderSim.Web
 	{
 		[SerializeField]
 		private GameObject webPrefab;
+		[SerializeField]
+		private float webShootSpeed = 10f;
 
 		private Web _web;
-        private bool hasFired;
+        private bool _hasFired;
+        private Vector3 _target;
+		private Camera _cam;
+		private float _lerpT = 0;
 
-        private Vector3 target;
-
-		private Camera cam;
-
-        [SerializeField] private float webShootSpeed = 10f;
-        private float lerpT = 0;
-
+		public bool HasActiveWeb => _web != null;
+		
 		private void Awake()
 		{
-			cam = Camera.main;
+			_cam = Camera.main;
 		}
 
 		private void Update()
 		{
-			if (hasFired)
+			if (_hasFired)
 			{
 				LerpShot();
 			}
@@ -36,29 +36,30 @@ namespace SpiderSim.Web
 
 		private void LerpShot()
         {
-            lerpT += Time.deltaTime * webShootSpeed;
-            _web.end = Vector3.Lerp(_web.beginning, target, lerpT);
+            _lerpT += Time.deltaTime * webShootSpeed;
+            _web.end = Vector3.Lerp(_web.beginning, _target, _lerpT);
 
-			Debug.Log(lerpT);
+			Debug.Log(_lerpT);
 
-            if (lerpT >= 1)
+            if (_lerpT >= 1)
             {
-                hasFired = false;
+                _hasFired = false;
             }
         }
 
 		public void ShootWeb()
 		{
-			target = Vector3.zero;
+			if (_web != null) return;
+			_target = Vector3.zero;
 
-			if (GetAttachSource(out target))
+			if (GetAttachSource(out _target))
 			{
-				Debug.DrawLine(transform.position, target, Color.white, 1f);
+				Debug.DrawLine(transform.position, _target, Color.white, 1f);
                 GameObject web = Instantiate(webPrefab, transform.position, Quaternion.identity);
                 _web = web.GetComponent<Web>();
 				_web.SetSource(this);
-                hasFired = true;
-                lerpT = 0;
+                _hasFired = true;
+                _lerpT = 0;
             }
 			else
 			{
@@ -70,7 +71,7 @@ namespace SpiderSim.Web
 		{
 			target = Vector3.zero;
 
-			if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+			if (Physics.Raycast(_cam.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
 			{
 				target = hit.point;
 
@@ -85,11 +86,9 @@ namespace SpiderSim.Web
 
         public void AttachCurrentWeb()
         {
-            if (_web != null)
-            {
-                _web.attached = true;
-                _web = null;
-            }
-        }
+	        if (_web == null) return;
+            _web.attached = true;
+	        _web = null;
+		}
 	}
 }
