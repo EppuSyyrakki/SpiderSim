@@ -32,6 +32,11 @@ namespace SpiderSim.Player.PlayerState
 				return new FallingState(true);
 			}
 
+            if (input.AttachWeb == PlayerInput.Button.Down)
+            {
+				_player.webSource.AttachCurrentWeb();
+            }
+
 			return null;
 		}
 
