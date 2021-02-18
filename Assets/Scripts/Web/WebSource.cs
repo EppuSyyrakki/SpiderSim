@@ -15,7 +15,7 @@ namespace SpiderSim.Web
 
 		private Web _web;
         private bool _hasFired;
-        private Vector3 _target;
+        private Vector3 _target = Vector3.zero;
 		private Camera _cam;
 		private float _lerpT = 0;
 
@@ -50,7 +50,6 @@ namespace SpiderSim.Web
 		public void ShootWeb()
 		{
 			if (_web != null) return;
-			_target = Vector3.zero;
 
 			if (GetAttachSource(out _target))
 			{

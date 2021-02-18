@@ -10,13 +10,11 @@ namespace SpiderSim.Player.PlayerState
 		
 		public IPlayerState Update(PlayerInput input)
 		{
-			if (input.Move != Vector3.zero && GetGroundNormal(out var normal))
+			if (input.Move != Vector3.zero)
 			{
-				// must be negative because model is rotated 180 degrees
-				Vector3 transformed = -_body.TransformVector(input.Move * _player.groundSpeed * Time.deltaTime);
-				Vector3 offset = new Vector3(transformed.x, transformed.y, transformed.z);
-				_body.position += offset;
-				_body.up = normal;
+				Vector3 normal = GetGroundNormal();
+				RotateBody(normal);
+				MoveBody(input.Move, normal);
 			}
 			
 			// TODO: Lerp turn toward move direction
@@ -27,10 +25,10 @@ namespace SpiderSim.Player.PlayerState
 			}
 
 			// if player has pressed jump this frame, fall with jump
-			if (input.Jump == PlayerInput.Button.Down)
-			{
-				return new FallingState(true);
-			}
+			//if (input.Jump == PlayerInput.Button.Down)
+			//{
+			//	return new FallingState(true);
+			//}
 
             if (input.AttachWeb == PlayerInput.Button.Down)
             {
@@ -40,9 +38,22 @@ namespace SpiderSim.Player.PlayerState
 			return null;
 		}
 
-		private bool GetGroundNormal(out Vector3 normal)
+		private void RotateBody(Vector3 normal)
 		{
-			normal = _body.position;
+			_body.rotation = Quaternion.FromToRotation(_body.up, normal) * _body.rotation;
+		}
+
+		private void MoveBody(Vector3 movement, Vector3 normal)
+		{
+			// must be negative because model is rotated 180 degrees
+			Vector3 transformed = -_body.TransformVector(movement * _player.groundSpeed * Time.deltaTime);
+			Vector3 offset = Vector3.ProjectOnPlane(transformed, normal);
+			_body.position += offset;
+		}
+
+		private Vector3 GetGroundNormal()
+		{
+			Vector3 normal = _body.position;
 			// get the down direction relative to our rotation
 			Vector3 direction = -_body.transform.up.normalized;
 			Vector3 origin = normal - direction * _player.groundCastOffset;
@@ -57,22 +68,9 @@ namespace SpiderSim.Player.PlayerState
 			if (Physics.Raycast(origin, direction, out var hit, _player.groundCastDist, ownLayer))
 			{
 				normal = hit.normal;
-				return true;
 			}
 
-			return false;
-		}
-
-		private float GetBodyHeight()
-		{
-			float y = 0;
-
-			foreach (var legTarget in _player.legTargets)
-			{
-				y += legTarget.transform.position.y;
-			}
-
-			return Mathf.Round(y / _player.legTargets.Count * 100f) / 100f;
+			return normal;
 		}
 
 		public void OnStateEnter(PlayerController player)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using SpiderSim.Player.PlayerState;
@@ -17,6 +18,7 @@ namespace SpiderSim.Player
 		#region Public fields
 
 		public float groundSpeed = 4f, turnSpeed = 10f;
+		public float aimSpeedRatio = 0.4f, aimTurnRatio = 0.4f;
 		public float groundCastDist = 1f, groundCastOffset = 0.5f;
 		public float legCastDist = 1.2f, legCastOffset = 0.4f;
 		public float sphereCastRadius = 1f, sphereCastOffset = 0.5f;
@@ -39,6 +41,11 @@ namespace SpiderSim.Player
 		public List<LegTarget> legTargets = new List<LegTarget>();
 		[HideInInspector]
 		public WebSource webSource;
+
+		#endregion
+		#region Public properties
+
+		public Vector3 RelativeDown => -body.transform.up;
 
 		#endregion
 

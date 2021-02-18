@@ -32,7 +32,7 @@ namespace SpiderSim.Player
 		{
 			Vector3 ground = position;
 			// get the down direction relative to our rotation
-			Vector3 direction = -_player.transform.up.normalized;
+			Vector3 direction = _player.RelativeDown;
 			Vector3 origin = position - direction * _player.legCastOffset;
 			LayerMask ownLayer = _player.gameObject.layer;
 
