@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using SpiderSim.Player.PlayerState;
 using UnityEngine;
+using SpiderSim.Web;
 
 namespace SpiderSim.Player
 {
@@ -36,6 +37,8 @@ namespace SpiderSim.Player
 		public Transform body;
 		[HideInInspector]
 		public List<LegTarget> legTargets = new List<LegTarget>();
+		[HideInInspector]
+		public WebSource webSource;
 
 		#endregion
 
@@ -56,6 +59,7 @@ namespace SpiderSim.Player
 			rb = GetComponent<Rigidbody>();
 			body = transform.GetChild(0);
 			legTargets.AddRange(GetComponentsInChildren<LegTarget>());
+			webSource = GetComponentInChildren<WebSource>();
 			// set Moving as the default state
 			_state = new MovingState();
 		}
