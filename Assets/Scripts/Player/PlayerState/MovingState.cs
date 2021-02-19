@@ -59,12 +59,6 @@ namespace SpiderSim.Player.PlayerState
 			Vector3 origin = normal - direction * _player.groundCastOffset;
 			LayerMask ownLayer = _player.gameObject.layer;
 
-#if UNITY_EDITOR
-			// Debugging tools to see the Raycast
-			_player.debugVectors[0] = origin;
-			_player.debugVectors[1] = direction;
-#endif
-
 			if (Physics.Raycast(origin, direction, out var hit, _player.groundCastDist, ownLayer))
 			{
 				normal = hit.normal;

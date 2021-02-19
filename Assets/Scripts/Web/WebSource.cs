@@ -19,8 +19,6 @@ namespace SpiderSim.Web
 		private Camera _cam;
 		private float _lerpT = 0;
 
-		public bool HasActiveWeb => _web != null;
-		
 		private void Awake()
 		{
 			_cam = Camera.main;
@@ -39,21 +37,19 @@ namespace SpiderSim.Web
             _lerpT += Time.deltaTime * webShootSpeed;
             _web.end = Vector3.Lerp(_web.beginning, _target, _lerpT);
 
-			Debug.Log(_lerpT);
-
             if (_lerpT >= 1)
             {
                 _hasFired = false;
             }
         }
 
-		public void ShootWeb()
+		public void ShootWeb(Ray aimRay)
 		{
 			if (_web != null) return;
 
 			if (GetAttachSource(out _target))
 			{
-				Debug.DrawLine(transform.position, _target, Color.white, 1f);
+				// Debug.DrawLine(transform.position, _target, Color.white, 1f);
                 GameObject web = Instantiate(webPrefab, transform.position, Quaternion.identity);
                 _web = web.GetComponent<Web>();
 				_web.SetSource(this);

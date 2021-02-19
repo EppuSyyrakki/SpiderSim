@@ -18,9 +18,7 @@ namespace SpiderSim.Player.PlayerState
 		{
 			Vector3 origin = _body.TransformPoint(_body.up * _player.sphereCastOffset);
 			LayerMask ownLayer = _player.gameObject.layer;
-#if UNITY_EDITOR
-			_player.debugVectors[2] = origin;
-#endif
+
 			Collider[] cols = Physics.OverlapSphere(origin, _player.sphereCastRadius, ownLayer);
 
 			foreach (var collider in cols)

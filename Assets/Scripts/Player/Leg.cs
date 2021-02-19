@@ -59,14 +59,6 @@ namespace SpiderSim.Player
 					_isStepping = false;
 				}
 			}
-
-#if UNITY_EDITOR
-			if (_player != null && _player.showDebugGizmos)
-			{
-				debugVectors[0] = _currentTarget.position;
-				debugVectors[1] = futureTarget.position;
-			}
-#endif
 		}
 
 		private void AssignStepTargets()
@@ -102,17 +94,6 @@ namespace SpiderSim.Player
 			int index = str.LastIndexOf('.');
 			string oppositeName = str.Substring(0, index) + oppositeSide + str.Substring(index + 2);
 			oppositeLeg = GameObject.Find(oppositeName).GetComponent<Leg>();
-		}
-
-		private void OnDrawGizmos()
-		{
-#if UNITY_EDITOR
-			if (_player != null && _player.showDebugGizmos)
-			{
-				Gizmos.color = Color.yellow;
-				Gizmos.DrawLine(debugVectors[0], debugVectors[1]);
-			}
-#endif
 		}
 	}
 }

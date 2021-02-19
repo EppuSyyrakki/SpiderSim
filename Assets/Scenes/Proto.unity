@@ -883,22 +883,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2626817993190487, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2174586679859643798, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195055665661921591, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3134681444321249622, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6008700691139908102, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
       propertyPath: m_Name
       value: Player
@@ -945,38 +929,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6008700691139908103, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6563721430098087507, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7292308885819702606, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8295299856996190256, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: legCastDist
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8295299856996190256, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: legCastOffset
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8295299856996190256, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: groundCastDist
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8295299856996190256, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: groundCastOffset
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8429611529159378102, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718219015481433433, guid: d34fd88e01ff0814cb248e77b8ec3272, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -18,7 +18,7 @@ namespace SpiderSim.Player
 		#region Public fields
 
 		public float groundSpeed = 4f, turnSpeed = 10f;
-		public float aimSpeedRatio = 0.4f, aimTurnRatio = 0.4f;
+		public float aimGroundSpeed = 1.6f, aimRotSpeed = 10f, aimDistance = 15f;
 		public float groundCastDist = 1f, groundCastOffset = 0.5f;
 		public float legCastDist = 1.2f, legCastOffset = 0.4f;
 		public float sphereCastRadius = 1f, sphereCastOffset = 0.5f;
@@ -45,21 +45,10 @@ namespace SpiderSim.Player
 		#endregion
 		#region Public properties
 
-		public Vector3 RelativeDown => -body.transform.up;
+		public Vector3 RelativeDown => -body.up;
+		public Vector3 RelativeForward => -body.forward;
 
 		#endregion
-
-#if UNITY_EDITOR
-		#region Debugging tools
-
-		// 1 = ground ray origin
-		// 2 = ground ray direction
-		// 3 = sphere cast origin
-		[HideInInspector]
-		public Vector3[] debugVectors = new Vector3[3];
-		public bool showDebugGizmos;
-		#endregion
-#endif
 
 		private void Awake()
 		{
@@ -90,31 +79,6 @@ namespace SpiderSim.Player
 				_state = newState;
 				_state.OnStateEnter(this);
 			}
-		}
-
-		private void OnDrawGizmos()
-		{
-#if UNITY_EDITOR
-			if (showDebugGizmos)
-			{
-				Gizmos.color = Color.red;
-				string stateName = "";
-
-				if (_state != null)
-				{
-					stateName = _state.GetType().Name;
-				}
-				switch (stateName)
-				{
-					case "MovingState":
-						Gizmos.DrawRay(debugVectors[0], debugVectors[1] * groundCastDist);
-						break;
-					case "FallingState":
-						Gizmos.DrawWireSphere(debugVectors[2], sphereCastRadius);
-						break;
-				}
-			}
-#endif
 		}
 	}
 }
