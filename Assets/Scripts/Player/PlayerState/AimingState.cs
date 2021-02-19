@@ -6,14 +6,30 @@ namespace SpiderSim.Player.PlayerState
 	{
 		private PlayerController _player;
 		private Transform _body;
-		private Vector3 aimDir;
-		private Ray aimRay;
+		private Vector3 _aimDir;
+		private Ray _aim;
+		private GameObject _reticule;
+		private Camera _cam;
 
 		public IPlayerState Update(PlayerInput input)
 		{
-			Vector3 origin = _player.webSource.transform.position;
-			GetAimDirection(input.Look);
-			aimRay = new Ray(origin, aimDir);
+			Vector3 target = Vector3.zero;
+			_aimDir = GetAimDirection(input.Look);
+			_aim = new Ray(_player.webSource.transform.position, _aimDir);
+
+			// Raycast toward aiming direction and set target position if valid target found
+			if (Physics.Raycast(_aim.origin, _aim.direction, out RaycastHit hit, _player.aimDistance))
+			{
+				_reticule.SetActive(true);
+				target = hit.point;
+				Vector3 ratio = _cam.WorldToViewportPoint(target);
+				Vector3 screenPos = new Vector3(_cam.pixelWidth * ratio.x, _cam.pixelHeight * ratio.y);
+				_reticule.transform.position = screenPos;
+			}
+			else
+			{
+				_player.aimReticule.SetActive(false);
+			}
 
 			if (input.Move != Vector3.zero)
 			{
@@ -29,17 +45,22 @@ namespace SpiderSim.Player.PlayerState
 
 			if (input.ShootWeb == PlayerInput.Button.Down)
 			{
-				_player.webSource.ShootWeb(aimRay);
+				_player.webSource.ShootWeb(target);
+			}
+
+			if (input.AttachWeb == PlayerInput.Button.Down)
+			{
+				_player.webSource.AttachCurrentWeb();
 			}
 
 			return null;
 		}
 
-		private void GetAimDirection(Vector3 look)
+		private Vector3 GetAimDirection(Vector3 look)
 		{
 			Vector3 lookEuler = new Vector3(-look.y, look.x);
-			Vector3 newDir = Quaternion.Euler(lookEuler) * aimDir;
-			aimDir = (newDir * _player.aimRotSpeed * 100f * Time.deltaTime).normalized;
+			Vector3 newDir = Quaternion.Euler(lookEuler) * _aimDir;
+			return (newDir * _player.aimRotSpeed * 100f * Time.deltaTime).normalized;
 		}
 
 		private void RotateBody(Vector3 normal)
@@ -76,12 +97,15 @@ namespace SpiderSim.Player.PlayerState
 			Debug.Log("Entering aiming state");
 			_player = player;
 			_body = player.body;
-			aimDir = _player.RelativeForward;
+			_aimDir = _player.RelativeForward;
+			_reticule = _player.aimReticule;
+			_cam = Camera.main;
 		}
 
 		public void OnStateExit(PlayerController player)
 		{
 			Debug.Log("Exiting aiming state");
+			_reticule.SetActive(false);
 		}
 	}
 }

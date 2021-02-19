@@ -944,15 +944,11 @@ MonoBehaviour:
   stepDistance: 0.45
   stepFreq: 0.15
   stepArc: 0.5
+  aimTarget: {fileID: 0}
   rb: {fileID: 0}
   body: {fileID: 0}
   legTargets: []
   webSource: {fileID: 0}
-  debugVectors:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  showDebugGizmos: 1
 --- !u!54 &8705209477946377626
 Rigidbody:
   m_ObjectHideFlags: 0

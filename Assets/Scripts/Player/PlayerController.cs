@@ -29,6 +29,7 @@ namespace SpiderSim.Player
 		public float stepFreq = 0.5f;
 		[Range(0.01f, 1f)]
 		public float stepArc = 1f;
+		public GameObject aimReticule;
 
 		#endregion
 		#region Public components
@@ -56,6 +57,7 @@ namespace SpiderSim.Player
 			body = transform.GetChild(0);
 			legTargets.AddRange(GetComponentsInChildren<LegTarget>());
 			webSource = GetComponentInChildren<WebSource>();
+			aimReticule.SetActive(false);
 			// set Moving as the default state
 			_state = new MovingState();
 		}

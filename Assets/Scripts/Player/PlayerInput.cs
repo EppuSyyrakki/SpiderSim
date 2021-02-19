@@ -48,7 +48,6 @@ namespace SpiderSim.Player
 			AttachWeb = GetButtonInput("AttachWeb");
 			CancelWeb = GetButtonInput("CancelWeb");
 			Jump = GetButtonInput("Jump");
-			Debug.Log(Look);
 		}
 
 		private static Vector3 GetMoveInput()
