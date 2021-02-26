@@ -16,7 +16,7 @@ namespace SpiderSim
 
         void Update()
         {
-	        if (Input.GetKeyDown(KeyCode.Mouse2))
+	        if (Input.GetKeyDown(KeyCode.P))
             {
                 Debug.Log("Mouse 2 pressed");
 	            Vector3 spawnPoint = new Vector3(Random.Range(1f, 4f), Random.Range(2f, 5f), Random.Range(1f, 4f));
