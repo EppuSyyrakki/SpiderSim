@@ -37,12 +37,12 @@ namespace SpiderSim
 		private List<Pool> pools;
 
 		// The dictionary containing all the pools as Queues
-		public Dictionary<string, Queue<IPooledObject>> poolDictionary;
+		public Dictionary<string, Queue<IPooledObject>> PoolDictionary;
 		
 		void Start()
 		{
 			// Create the dictionary
-			poolDictionary = new Dictionary<string, Queue<IPooledObject>>();
+			PoolDictionary = new Dictionary<string, Queue<IPooledObject>>();
 
 			// Populate all the Queues
 			foreach (Pool pool in pools)
@@ -53,21 +53,23 @@ namespace SpiderSim
 				for (int i = 0; i < pool.size; i++)
 				{
 					GameObject obj = Instantiate(pool.prefab);
+					
+					// Fetch the interface and ensure it exists. If not, print error and return
 					IPooledObject pooled = obj.GetComponent<IPooledObject>();
 
 					if (pooled == null)
 					{
-						Debug.LogWarning(obj.name + " in the object pool doesn't implement IPooledObject interface");
-						Destroy(obj);
+						Debug.LogError(obj.name + " in the object pool doesn't implement IPooledObject interface");
 						return;
 					}
 
+					// Switch the object off and add it to the queue
 					pooled.Deactivate();
 					objectPool.Enqueue(pooled);
 				}
 
 				// Add the new queue to the dictionary
-				poolDictionary.Add(pool.tag, objectPool);
+				PoolDictionary.Add(pool.tag, objectPool);
 			}
 		}
 
@@ -81,15 +83,15 @@ namespace SpiderSim
 		/// <returns>The GameObject from the object pool. Null if tag not found</returns>
 		public IPooledObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
 		{
-			if (!poolDictionary.ContainsKey(tag))
+			if (!PoolDictionary.ContainsKey(tag))
 			{
 				Debug.LogWarning("Pool with tag " + tag + " doesn't exist");
 				return null;
 			}
 
-			IPooledObject objectToSpawn = poolDictionary[tag].Dequeue();
+			IPooledObject objectToSpawn = PoolDictionary[tag].Dequeue();
 			objectToSpawn.Activate(position, rotation);
-			poolDictionary[tag].Enqueue(objectToSpawn);
+			PoolDictionary[tag].Enqueue(objectToSpawn);
 
 			return objectToSpawn;
 		}

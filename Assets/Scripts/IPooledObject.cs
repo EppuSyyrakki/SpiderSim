@@ -12,7 +12,7 @@ namespace SpiderSim
 		public void Activate(Vector3 position, Quaternion rotation);
 
 		/// <summary>
-		/// Call this to deactivate object from pool instead of destroying it
+		/// Call this to deactivate object from pool instead of destroying it.
 		/// </summary>
 		public void Deactivate();
 
