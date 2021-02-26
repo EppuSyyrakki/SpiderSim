@@ -14,7 +14,7 @@ namespace SpiderSim.Web
 		[SerializeField]
 		private float webShootSpeed = 10f;
 
-		private Web _webScript;
+		private Web _currentWeb;
         private bool _hasFired;
         private Vector3 _target = Vector3.zero;
         private float _lerpT = 0;
@@ -25,12 +25,17 @@ namespace SpiderSim.Web
 			{
 				LerpShot();
 			}
+
+			if (_currentWeb != null)
+			{
+				_currentWeb.beginning = transform.position;
+			}
 		}
 
 		private void LerpShot()
         {
             _lerpT += Time.deltaTime * webShootSpeed;
-            _webScript.end = Vector3.Lerp(_webScript.beginning, _target, _lerpT);
+            _currentWeb.end = Vector3.Lerp(_currentWeb.beginning, _target, _lerpT);
 
             if (_lerpT >= 1)
             {
@@ -40,22 +45,27 @@ namespace SpiderSim.Web
 
 		public void ShootWeb(Vector3 target)
 		{
-			if (_webScript != null) return;
+			if (_currentWeb != null) return;
 
 			_target = target;
-			GameObject web = Instantiate(webPrefab, transform.position, Quaternion.identity);
-            _webScript = web.GetComponent<Web>();
-			_webScript.SetSource(this);
+			GameObject webObject = Instantiate(webPrefab, transform.position, Quaternion.identity);
+            _currentWeb = webObject.GetComponent<Web>();
+			_currentWeb.SetSource(this);
+			_currentWeb.SetupWeb(transform.position, transform.position);
             _hasFired = true;
             _lerpT = 0;
 		}
 
 		public void AttachCurrentWeb()
         {
-	        if (_webScript == null) return;
-            _webScript.attached = true;
-            ObjectPooler.Instance.SpawnFromPool("Web", transform.position, Quaternion.identity);
-            Destroy(_webScript.gameObject);
+	        if (_currentWeb == null) return;
+
+            _currentWeb.attached = true;
+            GameObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
+            Web newWeb = newFromPool.GetComponent<Web>();
+			newWeb.SetSource(this);
+			newWeb.SetupWeb(_currentWeb.beginning, _currentWeb.end, true);
+            Destroy(_currentWeb.gameObject);
 		}
 	}
 }

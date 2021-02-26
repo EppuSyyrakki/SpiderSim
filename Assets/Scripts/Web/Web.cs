@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpiderSim.Web
 {
-	public class Web : MonoBehaviour, IPooledObject
+	public class Web : PooledObject
 	{
 		private LineRenderer line;
 
@@ -18,29 +18,30 @@ namespace SpiderSim.Web
 		private void Awake()
 		{
 			line = GetComponent<LineRenderer>();
-            beginning = transform.position;
-            end = transform.position;
-        }
+		}
 
         public void SetSource(WebSource source)
         {
             this.source = source;
         }
 
+        public void SetupWeb(Vector3 beginning, Vector3 end, bool attached = false)
+        {
+	        this.attached = attached;
+            this.beginning = beginning;
+	        this.end = end;
+        }
+
         private void Update()
         {
-            if (!attached)
-            {
-                beginning = source.transform.position;
-                line.SetPosition(0, beginning);
-            }
-
+	        transform.position = beginning;
+            line.SetPosition(0, beginning);
             line.SetPosition(1, end);
         }
 
-        public void OnObjectSpawn()
+        public override void OnObjectSpawn()
         {
-	        
-        }
+	        Debug.Log("Web called spawn method");
+		}
 	}
 }

@@ -60,10 +60,12 @@ namespace SpiderSim
 			objectToSpawn.transform.position = position;
 			objectToSpawn.transform.rotation = rotation;
 
-			IPooledObject pooled = objectToSpawn.GetComponent<IPooledObject>();
+			PooledObject pooled = objectToSpawn.GetComponent<PooledObject>();
 
-			// if pooled is not null
-			pooled?.OnObjectSpawn();
+			if (pooled != null)
+			{
+				pooled.OnObjectSpawn();
+			}
 
 			poolDictionary[tag].Enqueue(objectToSpawn);
 
