@@ -37,24 +37,33 @@ namespace SpiderSim
 		private List<Pool> pools;
 
 		// The dictionary containing all the pools as Queues
-		public Dictionary<string, Queue<GameObject>> poolDictionary;
+		public Dictionary<string, Queue<IPooledObject>> poolDictionary;
 		
 		void Start()
 		{
 			// Create the dictionary
-			poolDictionary = new Dictionary<string, Queue<GameObject>>();
+			poolDictionary = new Dictionary<string, Queue<IPooledObject>>();
 
 			// Populate all the Queues
 			foreach (Pool pool in pools)
 			{
-				Queue<GameObject> objectPool = new Queue<GameObject>();
+				Queue<IPooledObject> objectPool = new Queue<IPooledObject>();
 
 				// loop through the size of the pool enqueue instantiate deactivated objects
 				for (int i = 0; i < pool.size; i++)
 				{
 					GameObject obj = Instantiate(pool.prefab);
-					obj.SetActive(false);
-					objectPool.Enqueue(obj);
+					IPooledObject pooled = obj.GetComponent<IPooledObject>();
+
+					if (pooled == null)
+					{
+						Debug.LogWarning(obj.name + " in the object pool doesn't implement IPooledObject interface");
+						Destroy(obj);
+						return;
+					}
+
+					pooled.Deactivate();
+					objectPool.Enqueue(pooled);
 				}
 
 				// Add the new queue to the dictionary
@@ -70,7 +79,7 @@ namespace SpiderSim
 		/// <param name="position">Position of the new object</param>
 		/// <param name="rotation">Rotation of the new object</param>
 		/// <returns>The GameObject from the object pool. Null if tag not found</returns>
-		public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
+		public IPooledObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
 		{
 			if (!poolDictionary.ContainsKey(tag))
 			{
@@ -78,15 +87,8 @@ namespace SpiderSim
 				return null;
 			}
 
-			GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-			objectToSpawn.SetActive(true);
-			objectToSpawn.transform.position = position;
-			objectToSpawn.transform.rotation = rotation;
-
-			IPooledObject pooled = objectToSpawn.GetComponent<IPooledObject>();
-
-			pooled?.Activate();
-
+			IPooledObject objectToSpawn = poolDictionary[tag].Dequeue();
+			objectToSpawn.Activate(position, rotation);
 			poolDictionary[tag].Enqueue(objectToSpawn);
 
 			return objectToSpawn;

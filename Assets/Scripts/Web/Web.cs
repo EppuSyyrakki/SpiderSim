@@ -39,14 +39,21 @@ namespace SpiderSim.Web
             line.SetPosition(1, end);
         }
 
-        public void Activate()
+        public void Activate(Vector3 position, Quaternion rotation)
         {
-	        Debug.Log("Web called spawn method");
-		}
+	        gameObject.SetActive(true);
+            transform.position = position;
+	        transform.rotation = rotation;
+        }
 
         public void Deactivate()
         {
 	        gameObject.SetActive(false);
+        }
+
+        public GameObject GameObject()
+        {
+	        return gameObject;
         }
     }
 }

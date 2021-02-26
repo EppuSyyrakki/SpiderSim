@@ -29,9 +29,11 @@ namespace SpiderSim
             transform.position = startingPos + offset;
         }
 
-        public void Activate()
+        public void Activate(Vector3 position, Quaternion rotation)
         {
-            startingPos = transform.position;
+            gameObject.SetActive(true);
+            startingPos = position;
+            transform.rotation = rotation;
             movementVector = new Vector3(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
             period *= Random.Range(0.75f, 1.25f);
         }
@@ -39,6 +41,11 @@ namespace SpiderSim
         public void Deactivate()
         {
 	        gameObject.SetActive(false);
+        }
+
+        public GameObject GameObject()
+        {
+	        return gameObject;
         }
 
         private void OnCollisionEnter(Collision other)

@@ -61,8 +61,8 @@ namespace SpiderSim.Web
 	        if (_currentWeb == null) return;
 
             _currentWeb.attached = true;
-            GameObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
-            Web newWeb = newFromPool.GetComponent<Web>();
+            IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
+            Web newWeb = newFromPool.GameObject().GetComponent<Web>();
 			newWeb.SetSource(this);
 			newWeb.SetupWeb(_currentWeb.beginning, _currentWeb.end, true);
             Destroy(_currentWeb.gameObject);
