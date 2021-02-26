@@ -10,10 +10,11 @@ namespace SpiderSim.Web
 	{
 		[SerializeField]
 		private GameObject webPrefab;
+
 		[SerializeField]
 		private float webShootSpeed = 10f;
 
-		private Web _web;
+		private Web _webScript;
         private bool _hasFired;
         private Vector3 _target = Vector3.zero;
         private float _lerpT = 0;
@@ -29,7 +30,7 @@ namespace SpiderSim.Web
 		private void LerpShot()
         {
             _lerpT += Time.deltaTime * webShootSpeed;
-            _web.end = Vector3.Lerp(_web.beginning, _target, _lerpT);
+            _webScript.end = Vector3.Lerp(_webScript.beginning, _target, _lerpT);
 
             if (_lerpT >= 1)
             {
@@ -39,21 +40,22 @@ namespace SpiderSim.Web
 
 		public void ShootWeb(Vector3 target)
 		{
-			if (_web != null) return;
+			if (_webScript != null) return;
 
 			_target = target;
-            GameObject web = Instantiate(webPrefab, transform.position, Quaternion.identity);
-            _web = web.GetComponent<Web>();
-			_web.SetSource(this);
+			GameObject web = Instantiate(webPrefab, transform.position, Quaternion.identity);
+            _webScript = web.GetComponent<Web>();
+			_webScript.SetSource(this);
             _hasFired = true;
             _lerpT = 0;
 		}
 
 		public void AttachCurrentWeb()
         {
-	        if (_web == null) return;
-            _web.attached = true;
-	        _web = null;
+	        if (_webScript == null) return;
+            _webScript.attached = true;
+            ObjectPooler.Instance.SpawnFromPool("Web", transform.position, Quaternion.identity);
+            Destroy(_webScript.gameObject);
 		}
 	}
 }
