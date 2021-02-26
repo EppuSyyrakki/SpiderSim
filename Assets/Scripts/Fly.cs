@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SpiderSim
 {
     [DisallowMultipleComponent]
-    public class Fly : PooledObject
+    public class Fly : MonoBehaviour, IPooledObject
     {
         [SerializeField] Vector3 movementVector;
         [SerializeField] float period = 2f;
@@ -27,9 +29,22 @@ namespace SpiderSim
             transform.position = startingPos + offset;
         }
 
-        public override void OnObjectSpawn()
+        public void Activate()
         {
             startingPos = transform.position;
+            movementVector = new Vector3(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
+            period *= Random.Range(0.75f, 1.25f);
+        }
+
+        public void Deactivate()
+        {
+	        gameObject.SetActive(false);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+	        Debug.Log("Fly collided"); 
+	        Deactivate();
         }
     }
 }

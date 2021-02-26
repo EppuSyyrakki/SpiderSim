@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SpiderSim.Web
 {
-	public class Web : PooledObject
+	public class Web : MonoBehaviour, IPooledObject
 	{
 		private LineRenderer line;
 
@@ -39,9 +39,14 @@ namespace SpiderSim.Web
             line.SetPosition(1, end);
         }
 
-        public override void OnObjectSpawn()
+        public void Activate()
         {
 	        Debug.Log("Web called spawn method");
 		}
-	}
+
+        public void Deactivate()
+        {
+	        gameObject.SetActive(false);
+        }
+    }
 }
