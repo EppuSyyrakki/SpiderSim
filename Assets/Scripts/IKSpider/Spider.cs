@@ -34,6 +34,8 @@ public class Spider : MonoBehaviour {
     public float turnSpeed;
     [Range(0.001f, 1)]
     public float walkDrag;
+    [Range(100, 1000)]
+    public float jumpForce;
 
     [Header("Grounding")]
     public CapsuleCollider capsuleCollider;
@@ -118,6 +120,7 @@ public class Spider : MonoBehaviour {
     }
 
     private groundInfo grdInfo;
+    public bool GroundCheckOn => groundCheckOn;
 
     private void Awake() {
 
@@ -238,7 +241,7 @@ public class Spider : MonoBehaviour {
         transform.position += currentVelocity;
     }
 
-    public void turn(Vector3 goalForward) {
+    public void Turn(Vector3 goalForward) {
         //Make sure goalForward is orthogonal to transform up
         goalForward = Vector3.ProjectOnPlane(goalForward, transform.up).normalized;
 
@@ -248,6 +251,14 @@ public class Spider : MonoBehaviour {
         goalForward = Vector3.ProjectOnPlane(goalForward, transform.up);
 
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(goalForward, transform.up), turnSpeed);
+    }
+
+    public void Jump()
+    {
+	    if (groundCheckOn && grdInfo.isGrounded)
+	    {
+		    rb.AddRelativeForce(Vector3.up * jumpForce);
+        }
     }
 
     //** Movement methods for public access**//
