@@ -30,7 +30,7 @@ public class SpiderController : MonoBehaviour {
 
         Quaternion tempCamTargetRotation = smoothCam.getCamTargetRotation();
         Vector3 tempCamTargetPosition = smoothCam.getCamTargetPosition();
-        spider.turn(input);
+        spider.Turn(input);
         smoothCam.setTargetRotation(tempCamTargetRotation);
         smoothCam.setTargetPosition(tempCamTargetPosition);
     }

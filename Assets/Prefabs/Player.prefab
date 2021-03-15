@@ -3564,7 +3564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spider: {fileID: 6602444994393196865}
-  webSource: {fileID: 0}
+  webSource: {fileID: 2583790083895864976}
   smoothCam: {fileID: 308868170}
 --- !u!114 &6602444994393196865
 MonoBehaviour:
@@ -3582,6 +3582,7 @@ MonoBehaviour:
   speed: 6
   turnSpeed: 3.6
   walkDrag: 0.9
+  jumpForce: 600
   capsuleCollider: {fileID: 2058039777}
   gravityMultiplier: 2
   groundNormalAdjustSpeed: 6
@@ -3609,8 +3610,8 @@ MonoBehaviour:
   legNormalSpeed: 10
   legNormalWeight: 0.1
   breathing: 1
-  breathePeriod: 10
-  breatheMagnitude: 0.1
+  breathePeriod: 6.5
+  breatheMagnitude: 0.126
   forwardRayLength: 0.4
   downRayLength: 1
   forwardRaySize: 0.99
@@ -4936,3 +4937,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
   m_PrefabInstance: {fileID: 7766028483848100481}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2583790083895864976 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5196325654598972433, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
+  m_PrefabInstance: {fileID: 7766028483848100481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838f09dbe37989e4e9ff5d770fd83889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

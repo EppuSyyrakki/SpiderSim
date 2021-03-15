@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using SpiderSim.Player.PlayerState;
 using UnityEngine;
 using SpiderSim.Web;
 
@@ -11,8 +10,7 @@ namespace SpiderSim.Player
 	public class PlayerController : MonoBehaviour
 	{
 		private readonly PlayerInput _input = new PlayerInput();
-		private IPlayerState _state;
-		
+
 		public Spider spider;
 		public WebSource webSource;
 		public SmoothCamera smoothCam;
@@ -20,40 +18,37 @@ namespace SpiderSim.Player
 		private void Awake()
 		{
 			webSource = GetComponentInChildren<WebSource>();
-			// aimReticule.SetActive(false);
-			// set Moving as the default state
-			_state = new MovingState();
-		}
-
-		private void Start()
-		{
-			// setup the default state
-			_state.OnStateEnter(this);
+			spider.setGroundcheck(true);
 		}
 
 		private void Update()
 		{
 			_input.Update();
 
-			// Update member classes
-			IPlayerState newState = _state.Update(_input);
-
-			// If the state update resulted in a new state, set that as the current state.
-			if (newState != null)
+			if (_input.Jump == PlayerInput.Button.Down)
 			{
-				_state.OnStateExit(this);
-				_state = newState;
-				_state.OnStateEnter(this);
+				spider.Jump();
 			}
 		}
 
 		private void FixedUpdate()
 		{
-			_state.FixedUpdate();
+			// Translate input into camera-relative movement and move the spider
+			Vector3 relativeInput = TranslateInput();
+			float speed = spider.speed * relativeInput.magnitude;
+			spider.Move(relativeInput, speed);
+
+			// Check the camera target rotation and position
+			Quaternion tempCamTargetRotation = smoothCam.getCamTargetRotation();
+			Vector3 tempCamTargetPosition = smoothCam.getCamTargetPosition();
+
+			// Turn the spider and set camera position and rotation
+			spider.Turn(relativeInput);
+			smoothCam.setTargetRotation(tempCamTargetRotation);
+			smoothCam.setTargetPosition(tempCamTargetPosition);
 		}
-		
-		// Use this from the states to translate an Input to camera-relative movement
-		public Vector3 TranslateInput() 
+
+		private Vector3 TranslateInput() 
 		{
 	        Vector3 up = spider.transform.up;
 	        Vector3 right = spider.transform.right;
