@@ -6,72 +6,43 @@ namespace SpiderSim.Player.PlayerState
 	public class MovingState : IPlayerState
 	{
 		private PlayerController _player;
-		private Transform _body;
+		private Spider _spider;
 		
 		public IPlayerState Update(PlayerInput input)
 		{
-			if (input.Move != Vector3.zero)
+			_spider.setGroundcheck(!Input.GetKey(KeyCode.Space));
+
+			if (input.Jump == PlayerInput.Button.Down)
 			{
-				Vector3 normal = GetGroundNormal();
-				RotateBody(normal);
-				MoveBody(input.Move, normal);
+				return new FallingState();
 			}
 			
-			// TODO: Lerp turn toward move direction
-
-			if (input.AimWeb == PlayerInput.Button.Down)
-			{
-				return new AimingState();
-			}
-
-			// if player has pressed jump this frame, fall with jump
-			//if (input.Jump == PlayerInput.Button.Down)
-			//{
-			//	return new FallingState(true);
-			//}
-
-            if (input.AttachWeb == PlayerInput.Button.Down)
-            {
-				_player.webSource.AttachCurrentWeb();
-            }
-
-			return null;
+            return null;
 		}
 
-		private void RotateBody(Vector3 normal)
+		public void FixedUpdate()
 		{
-			_body.rotation = Quaternion.FromToRotation(_body.up, normal) * _body.rotation;
-		}
+			// Translate input into camera-relative movement and move the spider
+			Vector3 input = _player.TranslateInput();
+			float speed = _spider.speed * input.magnitude;
+			_spider.Move(input, speed);
+			Debug.Log(speed);
 
-		private void MoveBody(Vector3 movement, Vector3 normal)
-		{
-			// must be negative because model is rotated 180 degrees
-			Vector3 transformed = -_body.TransformVector(movement * _player.groundSpeed * Time.deltaTime);
-			Vector3 offset = Vector3.ProjectOnPlane(transformed, normal);
-			_body.position += offset;
-		}
+			// Check the camera target rotation and position
+			Quaternion tempCamTargetRotation = _player.smoothCam.getCamTargetRotation();
+			Vector3 tempCamTargetPosition = _player.smoothCam.getCamTargetPosition();
 
-		private Vector3 GetGroundNormal()
-		{
-			Vector3 normal = _body.position;
-			// get the down direction relative to our rotation
-			Vector3 direction = -_body.transform.up.normalized;
-			Vector3 origin = normal - direction * _player.groundCastOffset;
-			LayerMask ownLayer = _player.gameObject.layer;
-
-			if (Physics.Raycast(origin, direction, out var hit, _player.groundCastDist, ownLayer))
-			{
-				normal = hit.normal;
-			}
-
-			return normal;
+			// Turn the spider and set camera position and rotation
+			_player.spider.turn(input);
+			_player.smoothCam.setTargetRotation(tempCamTargetRotation);
+			_player.smoothCam.setTargetPosition(tempCamTargetPosition);
 		}
 
 		public void OnStateEnter(PlayerController player)
 		{
 			Debug.Log("Entering moving state");
 			_player = player;
-			_body = player.body;
+			_spider = player.spider;
 		}
 
 		public void OnStateExit(PlayerController player)

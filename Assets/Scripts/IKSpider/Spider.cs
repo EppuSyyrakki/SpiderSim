@@ -29,9 +29,7 @@ public class Spider : MonoBehaviour {
 
     [Header("Movement")]
     [Range(1, 10)]
-    public float walkSpeed;
-    [Range(1, 10)]
-    public float runSpeed;
+    public float speed;
     [Range(1, 5)]
     public float turnSpeed;
     [Range(0.001f, 1)]
@@ -213,7 +211,8 @@ public class Spider : MonoBehaviour {
 
     //** Movement methods**//
 
-    private void move(Vector3 direction, float speed) {
+    public void Move(Vector3 direction, float speed) {
+	    if (direction.magnitude < Mathf.Epsilon) return;
 
         // TODO: Make sure direction is on the XZ plane of spider! For this maybe refactor the logic from input from spidercontroller to this function.
 
@@ -254,17 +253,7 @@ public class Spider : MonoBehaviour {
     //** Movement methods for public access**//
     // It is advised to call these on a fixed update basis.
 
-    public void walk(Vector3 direction) {
-        if (direction.magnitude < Mathf.Epsilon) return;
-        move(direction, walkSpeed);
-    }
-
-    public void run(Vector3 direction) {
-        if (direction.magnitude < Mathf.Epsilon) return;
-        move(direction, runSpeed);
-    }
-
-    //** Ground Check Method **//
+	//** Ground Check Method **//
     private groundInfo GroundCheck() {
         if (groundCheckOn) {
             if (forwardRay.castRay(out hitInfo, walkableLayer)) {
