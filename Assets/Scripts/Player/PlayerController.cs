@@ -1,86 +1,64 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using SpiderSim.Player.PlayerState;
 using UnityEngine;
 using SpiderSim.Web;
 
 namespace SpiderSim.Player
 {
+	[DefaultExecutionOrder(-1)]
 	public class PlayerController : MonoBehaviour
 	{
-		#region Private fields
-
 		private readonly PlayerInput _input = new PlayerInput();
-		private IPlayerState _state;
-		
-		#endregion
-		#region Public fields
 
-		public float groundSpeed = 4f, turnSpeed = 10f;
-		public float aimGroundSpeed = 1.6f, aimRotSpeed = 10f, aimDistance = 15f;
-		public float groundCastDist = 1f, groundCastOffset = 0.5f;
-		public float legCastDist = 1.2f, legCastOffset = 0.4f;
-		public float sphereCastRadius = 1f, sphereCastOffset = 0.5f;
-		public float jumpForce = 100f;
-		[Range(0.1f, 1f)]
-		public float stepDistance = 0.75f;
-		[Range(0.05f, 0.5f)]
-		public float stepFreq = 0.5f;
-		[Range(0.01f, 1f)]
-		public float stepArc = 1f;
-		public GameObject aimReticule;
-
-		#endregion
-		#region Public components
-		
-		[HideInInspector]
-		public Rigidbody rb;
-		[HideInInspector]
-		public Transform body;
-		[HideInInspector]
-		public List<LegTarget> legTargets = new List<LegTarget>();
-		[HideInInspector]
+		public Spider spider;
 		public WebSource webSource;
-
-		#endregion
-		#region Public properties
-
-		public Vector3 RelativeDown => -body.up;
-		public Vector3 RelativeForward => -body.forward;
-
-		#endregion
+		public SmoothCamera smoothCam;
 
 		private void Awake()
 		{
-			rb = GetComponent<Rigidbody>();
-			body = transform.GetChild(0);
-			legTargets.AddRange(GetComponentsInChildren<LegTarget>());
 			webSource = GetComponentInChildren<WebSource>();
-			aimReticule.SetActive(false);
-			// set Moving as the default state
-			_state = new MovingState();
-		}
-
-		private void Start()
-		{
-			// setup the default state
-			_state.OnStateEnter(this);
+			spider.setGroundcheck(true);
 		}
 
 		private void Update()
 		{
-			// Update member classes
 			_input.Update();
-			IPlayerState newState = _state.Update(_input);
 
-			// If the state update resulted in a new state, set that as the current state.
-			if (newState != null)
+			if (_input.Jump == PlayerInput.Button.Down)
 			{
-				_state.OnStateExit(this);
-				_state = newState;
-				_state.OnStateEnter(this);
+				spider.Jump();
 			}
+		}
+
+		private void FixedUpdate()
+		{
+			// Translate input into camera-relative movement and move the spider
+			Vector3 relativeInput = TranslateInput();
+			float speed = spider.speed * relativeInput.magnitude;
+			spider.Move(relativeInput, speed);
+
+			// Check the camera target rotation and position
+			Quaternion tempCamTargetRotation = smoothCam.getCamTargetRotation();
+			Vector3 tempCamTargetPosition = smoothCam.getCamTargetPosition();
+
+			// Turn the spider and set camera position and rotation
+			spider.Turn(relativeInput);
+			smoothCam.setTargetRotation(tempCamTargetRotation);
+			smoothCam.setTargetPosition(tempCamTargetPosition);
+		}
+
+		private Vector3 TranslateInput() 
+		{
+	        Vector3 up = spider.transform.up;
+	        Vector3 right = spider.transform.right;
+	        Vector3 input = 
+		        Vector3.ProjectOnPlane(smoothCam.getCameraTarget().forward, up).normalized * _input.Move.z 
+		        + (Vector3.ProjectOnPlane(smoothCam.getCameraTarget().right, up).normalized * _input.Move.x);
+	        Quaternion fromTo = Quaternion.AngleAxis(Vector3.SignedAngle(up, spider.getGroundNormal(), right), right);
+	        input = fromTo * input;
+	        float magnitude = input.magnitude;
+	        return (magnitude <= 1) ? input : input /= magnitude;
 		}
 	}
 }

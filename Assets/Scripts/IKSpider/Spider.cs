@@ -29,13 +29,13 @@ public class Spider : MonoBehaviour {
 
     [Header("Movement")]
     [Range(1, 10)]
-    public float walkSpeed;
-    [Range(1, 10)]
-    public float runSpeed;
+    public float speed;
     [Range(1, 5)]
     public float turnSpeed;
     [Range(0.001f, 1)]
     public float walkDrag;
+    [Range(100, 1000)]
+    public float jumpForce;
 
     [Header("Grounding")]
     public CapsuleCollider capsuleCollider;
@@ -120,6 +120,7 @@ public class Spider : MonoBehaviour {
     }
 
     private groundInfo grdInfo;
+    public bool GroundCheckOn => groundCheckOn;
 
     private void Awake() {
 
@@ -213,7 +214,8 @@ public class Spider : MonoBehaviour {
 
     //** Movement methods**//
 
-    private void move(Vector3 direction, float speed) {
+    public void Move(Vector3 direction, float speed) {
+	    if (direction.magnitude < Mathf.Epsilon) return;
 
         // TODO: Make sure direction is on the XZ plane of spider! For this maybe refactor the logic from input from spidercontroller to this function.
 
@@ -239,7 +241,7 @@ public class Spider : MonoBehaviour {
         transform.position += currentVelocity;
     }
 
-    public void turn(Vector3 goalForward) {
+    public void Turn(Vector3 goalForward) {
         //Make sure goalForward is orthogonal to transform up
         goalForward = Vector3.ProjectOnPlane(goalForward, transform.up).normalized;
 
@@ -251,20 +253,18 @@ public class Spider : MonoBehaviour {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(goalForward, transform.up), turnSpeed);
     }
 
+    public void Jump()
+    {
+	    if (groundCheckOn && grdInfo.isGrounded)
+	    {
+		    rb.AddRelativeForce(Vector3.up * jumpForce);
+        }
+    }
+
     //** Movement methods for public access**//
     // It is advised to call these on a fixed update basis.
 
-    public void walk(Vector3 direction) {
-        if (direction.magnitude < Mathf.Epsilon) return;
-        move(direction, walkSpeed);
-    }
-
-    public void run(Vector3 direction) {
-        if (direction.magnitude < Mathf.Epsilon) return;
-        move(direction, runSpeed);
-    }
-
-    //** Ground Check Method **//
+	//** Ground Check Method **//
     private groundInfo GroundCheck() {
         if (groundCheckOn) {
             if (forwardRay.castRay(out hitInfo, walkableLayer)) {
