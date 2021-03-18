@@ -43,11 +43,11 @@ namespace SpiderSim.Player
 		{
 			Move = GetMoveInput();
 			Look = GetLookInput();
-			AimWeb = GetButtonInput("AimWeb");
-			ShootWeb = GetButtonInput("ShootWeb");
-			AttachWeb = GetButtonInput("AttachWeb");
-			CancelWeb = GetButtonInput("CancelWeb");
-			Jump = GetButtonInput("Jump");
+			AimWeb = GetButtonInput(Names.Input.aimWeb);
+			ShootWeb = GetButtonInput(Names.Input.shootWeb);
+			AttachWeb = GetButtonInput(Names.Input.attachWeb);
+			CancelWeb = GetButtonInput(Names.Input.cancelWeb);
+			Jump = GetButtonInput(Names.Input.jump);
 		}
 
 		private static Vector3 GetMoveInput()
@@ -63,8 +63,8 @@ namespace SpiderSim.Player
 		{
 			return new Vector3
 			{
-				x = Input.GetAxis("CamHorizontal"),
-				y = Input.GetAxis("CamVertical")
+				x = Input.GetAxis(Names.Input.camHorizontal),
+				y = Input.GetAxis(Names.Input.camVertical)
 			};
 		}
 

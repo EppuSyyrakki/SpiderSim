@@ -15,6 +15,13 @@ namespace SpiderSim
 		{
 			public const string horizontal = "Horizontal";
 			public const string vertical = "Vertical";
+			public const string camHorizontal = "CamHorizontal";
+			public const string camVertical = "CamVertical";
+			public const string aimWeb = "AimWeb";
+			public const string shootWeb = "ShootWeb";
+			public const string attachWeb = "AttachWeb";
+			public const string cancelWeb = "CancelWeb";
+			public const string jump = "Jump";
 		}
 	}
 }

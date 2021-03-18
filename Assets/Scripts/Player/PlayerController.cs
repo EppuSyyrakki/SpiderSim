@@ -10,6 +10,7 @@ namespace SpiderSim.Player
 	public class PlayerController : MonoBehaviour
 	{
 		private readonly PlayerInput _input = new PlayerInput();
+		private bool jumped = false;
 
 		public Spider spider;
 		public WebSource webSource;
@@ -27,7 +28,7 @@ namespace SpiderSim.Player
 
 			if (_input.Jump == PlayerInput.Button.Down)
 			{
-				spider.Jump();
+				jumped = true;
 			}
 		}
 
@@ -37,6 +38,12 @@ namespace SpiderSim.Player
 			Vector3 relativeInput = TranslateInput();
 			float speed = spider.speed * relativeInput.magnitude;
 			spider.Move(relativeInput, speed);
+
+			if (jumped)
+			{
+				spider.Jump();
+				jumped = false;
+			}
 
 			// Check the camera target rotation and position
 			Quaternion tempCamTargetRotation = smoothCam.getCamTargetRotation();
@@ -48,6 +55,10 @@ namespace SpiderSim.Player
 			smoothCam.setTargetPosition(tempCamTargetPosition);
 		}
 
+		/// <summary>
+		/// Translates input into vectors projected relative to spider's body transform.
+		/// </summary>
+		/// <returns>The translated Vector3</returns>
 		private Vector3 TranslateInput() 
 		{
 	        Vector3 up = spider.transform.up;
