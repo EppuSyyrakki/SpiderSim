@@ -8,6 +8,15 @@ namespace SpiderSim
     {
         public ObjectPooler objectPooler;
 
+        private List<Transform> flies = new List<Transform>();
+        private List<Collider> obstacles = new List<Collider>();
+
+        [SerializeField]
+        private float maxDistance = 25f;
+
+        [SerializeField]
+        private LayerMask layersToCheck;
+
         void Start()
         {
             objectPooler = ObjectPooler.Instance;
@@ -16,11 +25,27 @@ namespace SpiderSim
 
         void Update()
         {
-	        if (Input.GetKeyDown(KeyCode.P))
-            {
-	            Vector3 spawnPoint = new Vector3(Random.Range(1f, 4f), Random.Range(2f, 5f), Random.Range(1f, 4f));
-                objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
-            }
+			if (Input.GetKeyDown(KeyCode.P))
+			{
+				Vector3 spawnPoint = GetNewDestination();
+				objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
+			}
+
+			CheckSurroundings();
+        }
+
+        private void CheckSurroundings()
+        {
+            obstacles.Clear();
+	        obstacles.AddRange(Physics.OverlapSphere(transform.position, maxDistance, layersToCheck));
+        }
+
+        public Vector3 GetNewDestination()
+        {
+	        Vector3 destination = Random.insideUnitSphere * Random.Range(0, maxDistance);
+            Debug.Log(destination);
+            Debug.DrawLine(destination, transform.position);
+            return destination;
         }
     }
 }
