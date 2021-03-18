@@ -30,17 +30,7 @@ namespace SpiderSim
 		private void Awake()
 		{
 			Instance = this;
-		}
 
-		// User configurable amount of pools for different game objects
-		[SerializeField]
-		private List<Pool> pools;
-
-		// The dictionary containing all the pools as Queues
-		public Dictionary<string, Queue<IPooledObject>> PoolDictionary;
-		
-		void Start()
-		{
 			// Create the dictionary
 			PoolDictionary = new Dictionary<string, Queue<IPooledObject>>();
 
@@ -53,7 +43,7 @@ namespace SpiderSim
 				for (int i = 0; i < pool.size; i++)
 				{
 					GameObject obj = Instantiate(pool.prefab);
-					
+
 					// Fetch the interface and ensure it exists. If not, print error and return
 					IPooledObject pooled = obj.GetComponent<IPooledObject>();
 
@@ -73,6 +63,13 @@ namespace SpiderSim
 			}
 		}
 
+		// User configurable amount of pools for different game objects
+		[SerializeField]
+		private List<Pool> pools;
+
+		// The dictionary containing all the pools as Queues
+		public Dictionary<string, Queue<IPooledObject>> PoolDictionary;
+		
 		/// <summary>
 		/// Dequeues and resets an object from the pool corresponding to given tag. Then activates and
 		/// returns that GameObject. If tag was not found, return null.
