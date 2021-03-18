@@ -47,7 +47,7 @@ namespace SpiderSim
             if (Vector3.Distance(transform.position, moveTarget) < targetTreshold)
             {
                 moveTarget = spawner.GetNewDestination();
-	        }
+            }
         }
 
         public void Activate(Vector3 position, Quaternion rotation)

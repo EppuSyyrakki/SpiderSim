@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,11 +11,14 @@ namespace SpiderSim
     {
         public ObjectPooler objectPooler;
 
-        private List<Transform> flies = new List<Transform>();
+        private List<Fly> flies = new List<Fly>();
         private List<Collider> obstacles = new List<Collider>();
 
         [SerializeField]
         private float maxDistance = 25f;
+
+        [SerializeField]
+        private int amountToSpawn = 10;
 
         [SerializeField]
         private LayerMask layersToCheck;
@@ -22,23 +26,23 @@ namespace SpiderSim
         void Start()
         {
             objectPooler = ObjectPooler.Instance;
+
+            for (int i = 0; i < amountToSpawn; i++)
+            {
+	            Vector3 spawnPoint = GetNewDestination();
+	            IPooledObject flyObj = objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
+	            Fly fly = flyObj.GameObject().GetComponent<Fly>();
+	            fly.moveTarget = GetNewDestination();
+	            fly.AssignSpawner(this);
+                flies.Add(fly);
+            }
         }
 
 
         void Update()
         {
 	        CheckSurroundings();
-
-            if (Input.GetKeyDown(KeyCode.P))
-			{
-				Vector3 spawnPoint = GetNewDestination();
-				IPooledObject flyObj = objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
-				Fly fly = flyObj.GameObject().GetComponent<Fly>();
-				fly.moveTarget = GetNewDestination();
-				Debug.DrawLine(fly.transform.position, fly.moveTarget, Color.white, 1f);
-                fly.AssignSpawner(this);
-            }
-	    }
+        }
 
         private void CheckSurroundings()
         {
@@ -48,7 +52,8 @@ namespace SpiderSim
 
         public Vector3 GetNewDestination()
         {
-	        Vector3 localDestination = Random.insideUnitSphere * Random.Range(0, maxDistance);
+	        float minDistance = maxDistance / 3;
+	        Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
 	        Vector3 destination = transform.TransformPoint(localDestination);
 
 	        // TODO: Tarkista onko se uusi koordinaatti jonkun listalla olevan colliderin sisällä.

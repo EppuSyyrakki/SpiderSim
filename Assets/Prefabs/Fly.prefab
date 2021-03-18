@@ -219,10 +219,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementVector: {x: 3, y: 0, z: 0}
   period: 2
-  targetTreshold: 1
+  targetTreshold: 2
   moveTarget: {x: 0, y: 0, z: 0}
   moveSpeed: 40
-  turnSpeed: 5
+  turnSpeed: 20
 --- !u!136 &7778457530389310253
 CapsuleCollider:
   m_ObjectHideFlags: 0

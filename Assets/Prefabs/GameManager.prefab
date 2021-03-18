@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - tag: Web
-    prefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
-    size: 3
   - tag: Fly
-    prefab: {fileID: 2657966937858644259, guid: 8f5c84a62699f114faf3da9c8895c14e, type: 3}
-    size: 10
+    prefab: {fileID: 7436507554900612730, guid: 78c52213bc3fafd40a929da531056c4f, type: 3}
+    size: 50
