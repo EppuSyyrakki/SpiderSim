@@ -54,8 +54,8 @@ namespace SpiderSim.Player
 		{
 			return new Vector3
 			{
-				x = Input.GetAxis("Horizontal"),
-				z = Input.GetAxis("Vertical")
+				x = Input.GetAxis(Names.Input.horizontal),
+				z = Input.GetAxis(Names.Input.vertical)
 			};
 		}
 
