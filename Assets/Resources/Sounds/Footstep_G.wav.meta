@@ -1,6 +1,7 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 6d358e65920a2cc4984770d116b02c95
 =======
 guid: b4319fb941fc9a44eb7bad1031f442b5
@@ -8,6 +9,9 @@ guid: b4319fb941fc9a44eb7bad1031f442b5
 =======
 guid: db734f22f5755cc468164a7a3ed506be
 >>>>>>> 4f37a7f... Fly movement updated
+=======
+guid: b4319fb941fc9a44eb7bad1031f442b5
+>>>>>>> 949c329... Lights for Kitchen and Fly placeholder
 AudioImporter:
   externalObjects: {}
   serializedVersion: 6

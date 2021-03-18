@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: fe40328e817d9154ebad07871abf4bc3
+=======
+guid: 4a9adbe635a24674c99847fd0fc60b9a
+>>>>>>> 949c329... Lights for Kitchen and Fly placeholder
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
