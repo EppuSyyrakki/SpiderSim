@@ -6,6 +6,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SpiderSim.Player;
 
 /*
  * A simple class which allows switching between a player input spider controller (SpiderController) and a randomly
@@ -15,7 +16,7 @@ using UnityEngine;
 
 public class SpiderModeSwitch : MonoBehaviour {
 
-    public SpiderController spiderController;
+    public PlayerController playerController;
     public SpiderNPCController spiderNPC;
     public Camera controllerCam;
     public Camera npcCam;
@@ -26,8 +27,8 @@ public class SpiderModeSwitch : MonoBehaviour {
         if (!controllerCam.enabled && !npcCam.enabled) controllerCam.enabled = true;
 
         // Start with spider controller enabled
-        if (spiderController.enabled && spiderNPC.enabled) spiderNPC.enabled = false;
-        if (!spiderController.enabled && !spiderNPC.enabled) spiderController.enabled = true;
+        if (playerController.enabled && spiderNPC.enabled) spiderNPC.enabled = false;
+        if (!playerController.enabled && !spiderNPC.enabled) playerController.enabled = true;
     }
     void Update() {
 
@@ -35,7 +36,7 @@ public class SpiderModeSwitch : MonoBehaviour {
             controllerCam.enabled = !controllerCam.enabled;
             npcCam.enabled = !npcCam.enabled;
             spiderNPC.enabled = !spiderNPC.enabled;
-            spiderController.enabled = !spiderController.enabled;
+            playerController.enabled = !playerController.enabled;
         }
     }
 }
