@@ -11,15 +11,16 @@ namespace SpiderSim
     {
         [SerializeField] Vector3 movementVector;
         [SerializeField] float period = 2f;
+        [SerializeField] private float targetTreshold = 0.1f;
 
-        float movementFactor;
+        private float movementFactor;
+        private Vector3 startingPos;
+        private FlySpawner spawner;
 
-        Vector3 startingPos;
-
-        public Transform moveTowards;
+        public Vector3 moveTarget = Vector3.zero;
         public float moveSpeed;
         public float turnSpeed;
-
+        
         void Update()
         {
             /*
@@ -34,7 +35,7 @@ namespace SpiderSim
             transform.position = startingPos + offset;
             */
 
-            Vector3 vTraj = moveTowards.position - transform.position;
+            Vector3 vTraj = moveTarget - transform.position;
 
 
             Quaternion qTargetRotation = Quaternion.LookRotation(vTraj, Vector3.up);
@@ -42,15 +43,18 @@ namespace SpiderSim
 
             transform.rotation = qLimitedRotation;
             transform.position += transform.forward * (moveSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, moveTarget) < targetTreshold)
+            {
+                moveTarget = spawner.GetNewDestination();
+	        }
         }
 
         public void Activate(Vector3 position, Quaternion rotation)
         {
             gameObject.SetActive(true);
-            startingPos = position;
+            transform.position = position;
             transform.rotation = rotation;
-            movementVector = new Vector3(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, 3));
-            period *= Random.Range(0.75f, 1.25f);
         }
 
         public void Deactivate()
@@ -63,10 +67,15 @@ namespace SpiderSim
 	        return gameObject;
         }
 
+        public void AssignSpawner(FlySpawner spawner)
+        {
+	        this.spawner = spawner;
+        }
+
         private void OnCollisionEnter(Collision other)
         {
-	        Debug.Log("Fly collided"); 
-	        Deactivate();
+	        // Debug.Log("Fly collided"); 
+	        // Deactivate();
         }
     }
 }

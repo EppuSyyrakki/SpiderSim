@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SpiderSim
 {
@@ -25,14 +27,18 @@ namespace SpiderSim
 
         void Update()
         {
-			if (Input.GetKeyDown(KeyCode.P))
+	        CheckSurroundings();
+
+            if (Input.GetKeyDown(KeyCode.P))
 			{
 				Vector3 spawnPoint = GetNewDestination();
-				objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
-			}
-
-			CheckSurroundings();
-        }
+				IPooledObject flyObj = objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
+				Fly fly = flyObj.GameObject().GetComponent<Fly>();
+				fly.moveTarget = GetNewDestination();
+				Debug.DrawLine(fly.transform.position, fly.moveTarget, Color.white, 1f);
+                fly.AssignSpawner(this);
+            }
+	    }
 
         private void CheckSurroundings()
         {
@@ -42,10 +48,18 @@ namespace SpiderSim
 
         public Vector3 GetNewDestination()
         {
-	        Vector3 destination = Random.insideUnitSphere * Random.Range(0, maxDistance);
-            Debug.Log(destination);
-            Debug.DrawLine(destination, transform.position);
+	        Vector3 localDestination = Random.insideUnitSphere * Random.Range(0, maxDistance);
+	        Vector3 destination = transform.TransformPoint(localDestination);
+
+	        // TODO: Tarkista onko se uusi koordinaatti jonkun listalla olevan colliderin sisällä.
+
             return destination;
+        }
+
+        private void OnDrawGizmos()
+        {
+	        Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, maxDistance);
         }
     }
 }
