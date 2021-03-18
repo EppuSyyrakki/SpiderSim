@@ -16,9 +16,14 @@ namespace SpiderSim
 
         Vector3 startingPos;
 
+        public Transform moveTowards;
+        public float moveSpeed;
+        public float turnSpeed;
+
         void Update()
         {
-            if (period <= Mathf.Epsilon) { return; }
+            /*
+             if (period <= Mathf.Epsilon) { return; }
             float cycles = Time.time / period; // Grows continually from 0
 
             const float tau = Mathf.PI * 2;
@@ -27,6 +32,16 @@ namespace SpiderSim
             movementFactor = rawSinWave / 2f + 0.5f;
             Vector3 offset = movementFactor * movementVector;
             transform.position = startingPos + offset;
+            */
+
+            Vector3 vTraj = moveTowards.position - transform.position;
+
+
+            Quaternion qTargetRotation = Quaternion.LookRotation(vTraj, Vector3.up);
+            Quaternion qLimitedRotation = Quaternion.Slerp(transform.rotation, qTargetRotation, turnSpeed * Time.deltaTime);
+
+            transform.rotation = qLimitedRotation;
+            transform.position += transform.forward * (moveSpeed * Time.deltaTime);
         }
 
         public void Activate(Vector3 position, Quaternion rotation)
