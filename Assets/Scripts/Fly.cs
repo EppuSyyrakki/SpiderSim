@@ -74,8 +74,7 @@ namespace SpiderSim
 
         private void OnCollisionEnter(Collision other)
         {
-	        // Debug.Log("Fly collided"); 
-	        // Deactivate();
+            moveTarget = spawner.GetNewDestination();
         }
     }
 }

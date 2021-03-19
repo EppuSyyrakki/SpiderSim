@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 namespace SpiderSim
 {
@@ -56,9 +59,28 @@ namespace SpiderSim
 	        Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
 	        Vector3 destination = transform.TransformPoint(localDestination);
 
-	        // TODO: Tarkista onko se uusi koordinaatti jonkun listalla olevan colliderin sisällä.
+            while (!CheckNewDestination(destination))
+            {
+                localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
+                destination = transform.TransformPoint(localDestination);
+            }
 
             return destination;
+        }
+
+        // Checks if the destination is inside a collider. If it's not inside a collider,
+        // returns true; otherwise false.
+        private bool CheckNewDestination(Vector3 destination)
+        {
+            foreach (Collider col in obstacles)
+            {
+                if (col.bounds.Contains(destination))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void OnDrawGizmos()
