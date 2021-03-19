@@ -36,6 +36,7 @@ namespace SpiderSim
 	            IPooledObject flyObj = objectPooler.SpawnFromPool("Fly", spawnPoint, Quaternion.identity);
 	            Fly fly = flyObj.GameObject().GetComponent<Fly>();
 	            fly.moveTarget = GetNewDestination();
+                fly.previousTarget = spawnPoint;
 	            fly.AssignSpawner(this);
                 flies.Add(fly);
             }
@@ -59,11 +60,34 @@ namespace SpiderSim
 	        Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
 	        Vector3 destination = transform.TransformPoint(localDestination);
 
+            bool destinationOK = false;
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (!CheckNewDestination(destination))
+                {
+                    localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
+                    destination = transform.TransformPoint(localDestination);
+                }
+                else if (CheckNewDestination(destination))
+                {
+                    destinationOK = true;
+                    break;
+                }
+            }
+
+            if (!destinationOK)
+            {
+                Debug.Log("Fly couldn't find a spot");
+            }
+
+            /*
             while (!CheckNewDestination(destination))
             {
                 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
                 destination = transform.TransformPoint(localDestination);
             }
+            */
 
             return destination;
         }
