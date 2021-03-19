@@ -18,6 +18,7 @@ namespace SpiderSim
         private FlySpawner spawner;
 
         public Vector3 moveTarget = Vector3.zero;
+        public Vector3 previousTarget;
         public float moveSpeed;
         public float turnSpeed;
         
@@ -46,6 +47,7 @@ namespace SpiderSim
 
             if (Vector3.Distance(transform.position, moveTarget) < targetTreshold)
             {
+                previousTarget = moveTarget;
                 moveTarget = spawner.GetNewDestination();
             }
         }
@@ -74,7 +76,9 @@ namespace SpiderSim
 
         private void OnCollisionEnter(Collision other)
         {
-            moveTarget = spawner.GetNewDestination();
+            moveTarget = previousTarget;
+            Debug.Log("Fly collided, get new destination");
+            //moveTarget = spawner.GetNewDestination();
         }
     }
 }
