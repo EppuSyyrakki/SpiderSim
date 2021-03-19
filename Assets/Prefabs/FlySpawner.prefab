@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPooler: {fileID: 0}
   maxDistance: 25
+  amountToSpawn: 10
   layersToCheck:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
