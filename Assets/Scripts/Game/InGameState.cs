@@ -11,7 +11,7 @@ namespace SpiderSim.Game
 
 		public InGameState()
 		{
-			GameManager.Instance.ChangeScene(Names.Scenes.Kitchen);
+			SetAssociatedScene(Names.Scenes.Kitchen);
 		}
 
 		public override GameState Update()

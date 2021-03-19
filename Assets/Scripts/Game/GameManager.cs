@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace SpiderSim.Game
 {
@@ -58,14 +57,14 @@ namespace SpiderSim.Game
 		}
 
 
-		public void ChangeScene(int levelNumber)
-		{
-			SceneManager.LoadScene(levelNumber);
-		}
+		//public void ChangeScene(int levelNumber)
+		//{
+		//	SceneManager.LoadScene(levelNumber);
+		//}
 
-		public void ReLoadScene()
-		{
-			SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex));
-		}
+		//public void ReLoadScene()
+		//{
+		//	SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex));
+		//}
 	}
 }
