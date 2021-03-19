@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2657966937858644268}
   - component: {fileID: 5578109892071371907}
   m_Layer: 0
-  m_Name: Fly
+  m_Name: FlyOLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,6 +114,7 @@ MonoBehaviour:
   period: 2
   targetTreshold: 1
   moveTarget: {x: 0, y: 0, z: 0}
+  previousTarget: {x: 0, y: 0, z: 0}
   moveSpeed: 5
   turnSpeed: 5
 --- !u!54 &5578109892071371907

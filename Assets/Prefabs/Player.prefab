@@ -43,11 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cbdf57fe1c59b48a60e208c15706eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  webPrefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
-  webShootSpeed: 10
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &7644836829583018044
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,7 +3610,15 @@ MonoBehaviour:
   ninjaRope: {fileID: 7954476200783446677}
   smoothCam: {fileID: 308868170}
   aimDistance: 100
-  aimRotSpeed: 10
+  aimRotSpeed: 600
+  aimZoneX: 0.2
+  aimZoneY: 0.33
+  webShotSpeed: 10
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  webPrefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
+  reticuleYOffset: 0.153
   _reticule: {fileID: 0}
 --- !u!114 &6602444994393196865
 MonoBehaviour:

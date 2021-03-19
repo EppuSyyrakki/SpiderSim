@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace SpiderSim.Player
 {
@@ -19,7 +20,7 @@ namespace SpiderSim.Player
 		public float aimDistance = 100f;
 		public float aimRotSpeed = 10f;
 		[Range(0.1f, 0.5f)]
-		public float aimDeadZone = 0.25f;
+		public float aimZoneX = 0.2f, aimZoneY = 0.25f;
 		public float webShotSpeed = 10f;
 		public LayerMask ignoreLayer;
 		public GameObject webPrefab;
@@ -52,10 +53,19 @@ namespace SpiderSim.Player
 			else if (_input.AimWeb == PlayerInput.Button.Stay)
 			{
 				Aim();
+				if (_input.ShootWeb == PlayerInput.Button.Down)
+				{
+					Shoot();
+				}
 			}
 			else if (_input.AimWeb == PlayerInput.Button.Up)
 			{
 				AimingMode(false);
+			}
+
+			if (_input.AttachWeb == PlayerInput.Button.Down)
+			{
+				ninjaRope.AttachCurrentWeb();
 			}
 		}
 
@@ -76,26 +86,47 @@ namespace SpiderSim.Player
 			}
 		}
 
+		/// <summary>
+		/// Moves the aiming reticule on the GUI according to input
+		/// </summary>
 		private void Aim()
 		{
 			if (_input.Look != Vector3.zero)
 			{
+				Camera c = smoothCam.Cam;
+				Vector3 pos = _reticule.transform.position;
+				Vector3 newPos = new Vector3(
+					pos.x + _input.Look.x * aimRotSpeed * Time.deltaTime,
+					pos.y + _input.Look.y * aimRotSpeed * Time.deltaTime);
+				Vector3 screenPos = GetReticuleScreenPosition();
 
+				// Restrict reticule position to a relative distance from middle of screen
+				if (Mathf.Abs(screenPos.x - 0.5f) < aimZoneX && Mathf.Abs(screenPos.y - 0.5f) < aimZoneY)
+				{
+					_reticule.transform.position = newPos;
+				}
 			}
 		}
 
-		private Vector3 GetViewportPoint(Vector3 target)
+		/// <summary>
+		/// Casts a ray from camera towards the aiming reticule. If object found, shoots the web.
+		/// </summary>
+		private void Shoot()
 		{
 			Camera c = smoothCam.Cam;
-			Vector3 ratio = c.WorldToViewportPoint(target);
-			return new Vector3(c.pixelWidth * ratio.x, c.pixelHeight * ratio.y);
+			Ray ray = c.ScreenPointToRay(_reticule.transform.position);
+
+			if (Physics.Raycast(ray, out RaycastHit hit))
+			{
+				ninjaRope.ShootWeb(hit.point);
+			}
 		}
 
-		private Vector3 GetWorldPoint(Vector3 screenPos)
+		private Vector3 GetReticuleScreenPosition()
 		{
 			Camera c = smoothCam.Cam;
-			Vector3 ratio = c.ViewportToWorldPoint(screenPos);
-			return new Vector3(c.pixelWidth * ratio.x, c.pixelHeight * ratio.y);
+			Vector3 retPos = _reticule.transform.position;
+			return new Vector3(retPos.x / c.pixelWidth, retPos.y / c.pixelHeight);
 		}
 
 		private void FixedUpdate()
