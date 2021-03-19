@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &501725610486934886
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2359105191630984294}
+  - component: {fileID: 7954476200783446677}
+  m_Layer: 3
+  m_Name: NinjaRope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2359105191630984294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501725610486934886}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00009, y: -0.00399, z: 0.00894}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8634589293312570788}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7954476200783446677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501725610486934886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17cbdf57fe1c59b48a60e208c15706eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webPrefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
+  webShootSpeed: 10
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7644836829583018044
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +60,7 @@ GameObject:
   - component: {fileID: 8242045463044528566}
   - component: {fileID: 796718073}
   - component: {fileID: 6493856530494105937}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Spider Spectating Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +200,7 @@ GameObject:
   - component: {fileID: 302098217}
   - component: {fileID: 302098215}
   - component: {fileID: 302098216}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_L2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292006633878}
   - component: {fileID: 66010350}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292023494108}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint34_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292026293040}
   - component: {fileID: 963471126}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292037413057}
   - component: {fileID: 923757974}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292159552028}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint32_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +592,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292163029410}
   - component: {fileID: 8634589292163029409}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: JointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +648,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292179357578}
   - component: {fileID: 1789707794}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -658,7 +706,7 @@ GameObject:
   - component: {fileID: 1529482868}
   - component: {fileID: 1529482867}
   - component: {fileID: 1529482866}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_L4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +867,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292194830668}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint33_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,7 +899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292221584526}
   - component: {fileID: 1499166048}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -906,7 +954,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292251629625}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint30_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -937,7 +985,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292280226614}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -967,7 +1015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292290452231}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -998,7 +1046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292318954209}
   - component: {fileID: 237453449}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1054,7 +1102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292335041445}
   - component: {fileID: 1483797170}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1110,7 +1158,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292338933530}
   - component: {fileID: 67154094}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1166,7 +1214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292356008462}
   - component: {fileID: 449298523}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1222,7 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292431653601}
   - component: {fileID: 509987273}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,7 +1326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292458537990}
   - component: {fileID: 8634589292458537989}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: JointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292471952516}
   - component: {fileID: 8634589291851047550}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1389,7 +1437,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292504624495}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint30_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1468,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292522546996}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint32_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1502,7 @@ GameObject:
   - component: {fileID: 1324680883}
   - component: {fileID: 1324680882}
   - component: {fileID: 1324680884}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_R2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1616,7 +1664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292618528836}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: LowerBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1647,7 +1695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292626680152}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1680,7 +1728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292685724024}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint34_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1711,7 +1759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292692848180}
   - component: {fileID: 2137726067}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1767,7 +1815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292707812631}
   - component: {fileID: 729602281}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1822,7 +1870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292710360741}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1854,7 +1902,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292720511235}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint39_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1885,7 +1933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292723167102}
   - component: {fileID: 8634589291851047548}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1943,7 +1991,7 @@ GameObject:
   - component: {fileID: 8634589292763693861}
   - component: {fileID: 6757185163653745695}
   - component: {fileID: 1173845210}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_L1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2105,7 +2153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589292834031885}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2136,7 +2184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292836997007}
   - component: {fileID: 1319625003}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2194,7 +2242,7 @@ GameObject:
   - component: {fileID: 902956908}
   - component: {fileID: 902956907}
   - component: {fileID: 902956909}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_L3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2357,7 +2405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589292969945512}
   - component: {fileID: 8634589291851047551}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2413,7 +2461,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293015848900}
   - component: {fileID: 1162707437}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2469,7 +2517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293028226328}
   - component: {fileID: 8634589293028226335}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Spider_Model_Group
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2519,7 +2567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293031137146}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint37_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2550,7 +2598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293036664065}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint29_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2581,7 +2629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293038605797}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: geo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2614,7 +2662,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293046362947}
   - component: {fileID: 517881602}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2670,7 +2718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293053711054}
   - component: {fileID: 1259305000}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2725,7 +2773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293075433692}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint33_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2756,7 +2804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293129380022}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2786,7 +2834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293139258971}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: UpperBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2824,7 +2872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293143399701}
   - component: {fileID: 8634589293143399700}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: JointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2879,7 +2927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293166598154}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2910,7 +2958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293168168814}
   - component: {fileID: 1791070891}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2966,7 +3014,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293168404741}
   - component: {fileID: 1738653103}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3024,7 +3072,7 @@ GameObject:
   - component: {fileID: 49142272}
   - component: {fileID: 49142271}
   - component: {fileID: 49142273}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_R3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3187,7 +3235,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293212396741}
   - component: {fileID: 8634589293212396740}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: JointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3245,7 +3293,7 @@ GameObject:
   - component: {fileID: 8634589291851047554}
   - component: {fileID: 8634589291851047553}
   - component: {fileID: 8634589291851047552}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_R1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3408,7 +3456,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293249286474}
   - component: {fileID: 1801391133}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3464,7 +3512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293275630518}
   - component: {fileID: 882405231}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3526,7 +3574,7 @@ GameObject:
   - component: {fileID: 5356263202611163170}
   - component: {fileID: 8634589293312570790}
   - component: {fileID: 2058039777}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -3540,17 +3588,17 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8634589293312570784}
-  m_LocalRotation: {x: 0, y: -0.035405423, z: 0, w: 0.999373}
+  m_LocalRotation: {x: 0, y: -0.004363368, z: 0, w: 0.9999905}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 8634589293613505109}
   - {fileID: 276284874467816837}
   - {fileID: 8634589293028226328}
-  - {fileID: 6709410577958672565}
+  - {fileID: 2359105191630984294}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -4.058, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.5, z: 0}
 --- !u!114 &9098652535383995196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3564,8 +3612,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spider: {fileID: 6602444994393196865}
-  webSource: {fileID: 2583790083895864976}
+  ninjaRope: {fileID: 7954476200783446677}
   smoothCam: {fileID: 308868170}
+  aimDistance: 100
+  aimRotSpeed: 10
+  _reticule: {fileID: 0}
 --- !u!114 &6602444994393196865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3723,7 +3774,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293442604249}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3755,7 +3806,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293463271989}
   - component: {fileID: 1335655607}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3810,7 +3861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293464318796}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint31_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3843,7 +3894,7 @@ GameObject:
   - component: {fileID: 90793497}
   - component: {fileID: 90793496}
   - component: {fileID: 90793498}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Leg_R4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4005,7 +4056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293546362482}
   - component: {fileID: 1005410320}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4060,7 +4111,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293556137537}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Spider_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4093,7 +4144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293572196125}
   - component: {fileID: 1169438666}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4148,7 +4199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293572836397}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4178,7 +4229,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293609568533}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint29_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4213,7 +4264,7 @@ GameObject:
   - component: {fileID: 8634589293613505111}
   - component: {fileID: 308868170}
   - component: {fileID: 4104822328290089619}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Spider Controller Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -4360,7 +4411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293781861510}
   - component: {fileID: 8634589293781861509}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Spider_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4497,7 +4548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293785923819}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint28_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4528,7 +4579,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293789333181}
   - component: {fileID: 8634589291851047549}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4584,7 +4635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293793534954}
   - component: {fileID: 8634589293793534953}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Spider_Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4672,7 +4723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293831354622}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4702,7 +4753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293837034400}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint31_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4733,7 +4784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8634589293841691463}
   - component: {fileID: 2097322140}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: HingeJointC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4788,7 +4839,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293852755462}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: joint38_M
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4819,7 +4870,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293908946750}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: EndEffector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4849,7 +4900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8634589293914961918}
-  m_Layer: 31
+  m_Layer: 3
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4875,76 +4926,3 @@ Transform:
   m_Father: {fileID: 8634589292626680152}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7766028483848100481
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8634589293312570788}
-    m_Modifications:
-    - target: {fileID: 3232183058563196127, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_Name
-      value: WebSource
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.00005
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.00345
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.0089
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
---- !u!4 &6709410577958672565 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3952722989693092404, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-  m_PrefabInstance: {fileID: 7766028483848100481}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2583790083895864976 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5196325654598972433, guid: f02552bc8a780f743a9b2f03a398caf9, type: 3}
-  m_PrefabInstance: {fileID: 7766028483848100481}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 838f09dbe37989e4e9ff5d770fd83889, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

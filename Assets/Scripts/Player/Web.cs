@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpiderSim.Web
+namespace SpiderSim.Player
 {
 	public class Web : MonoBehaviour, IPooledObject
 	{
@@ -13,14 +13,14 @@ namespace SpiderSim.Web
         public Vector3 end;
         public bool attached = false;
 
-        private WebSource source;
+        private NinjaRope source;
 
 		private void Awake()
 		{
 			line = GetComponent<LineRenderer>();
 		}
 
-        public void SetSource(WebSource source)
+        public void SetSource(NinjaRope source)
         {
             this.source = source;
         }

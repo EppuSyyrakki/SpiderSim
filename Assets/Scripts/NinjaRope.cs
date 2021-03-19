@@ -2,47 +2,96 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NinjaRope : MonoBehaviour
+namespace SpiderSim.Player
 {
-    private List<GameObject> _webParts = new List<GameObject>();
+	public class NinjaRope : MonoBehaviour
+	{
+		private PlayerController _player;
+		private Vector3 _aimDir;
+		private Ray _aim;
+		private Web _currentWeb;
+		private bool _hasFired;
+		private Vector3 _target = Vector3.zero;
+		private float _lerpT = 0;
 
-    [SerializeField] 
-    private GameObject webPart;
+		private void Awake()
+		{
+			_player = transform.parent.gameObject.GetComponent<PlayerController>();
+		}
 
-    public Vector3 direction;
-    private Vector3 _previousPosition;
+		private void Update()
+		{
+			if (_hasFired)
+			{
+				LerpShot();
+			}
 
-    [SerializeField] 
-    private float waitingTime = 0.05f;
-    private float _timer = 0;
+			if (_currentWeb != null)
+			{
+				_currentWeb.beginning = transform.position;
+			}
+		}
 
-    [SerializeField] 
-    private int maxParts = 10;
+		private void LerpShot()
+		{
+			_lerpT += Time.deltaTime * _player.webShotSpeed;
+			_currentWeb.end = Vector3.Lerp(_currentWeb.beginning, _target, _lerpT);
 
-    private float _webHeight;
+			if (_lerpT >= 1)
+			{
+				_hasFired = false;
+			}
+		}
 
-    void Start()
-    {
-        direction = transform.TransformDirection(transform.up);
-        SpawnWeb(transform.position);
-    }
+		public void ShootWeb(Vector3 target)
+		{
+			if (_currentWeb != null) return;
 
-    void Update()
-    {
-        _timer += Time.deltaTime;
+			_target = target;
+			GameObject webObject = Instantiate(_player.webPrefab, transform.position, Quaternion.identity);
+			_currentWeb = webObject.GetComponent<Web>();
+			_currentWeb.SetSource(this);
+			_currentWeb.SetupWeb(transform.position, transform.position);
+			_hasFired = true;
+			_lerpT = 0;
+		}
 
-        if (_timer > waitingTime && _webParts.Count <= maxParts)
-        {
-            SpawnWeb(_previousPosition + direction);
-        }
-    }
+		public void AttachCurrentWeb()
+		{
+			if (_currentWeb == null) return;
 
-    void SpawnWeb(Vector3 position)
-    {
-        GameObject piece = Instantiate(webPart, position, Quaternion.identity, transform);
-        piece.transform.up = direction;
-        _webHeight = piece.GetComponentInChildren<CapsuleCollider>().height;
-        _previousPosition = piece.transform.position;
-        _webParts.Add(piece);
-    }
+			_currentWeb.attached = true;
+			IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
+			Web newWeb = newFromPool.GameObject().GetComponent<Web>();
+			newWeb.SetSource(this);
+			newWeb.SetupWeb(_currentWeb.beginning, _currentWeb.end, true);
+			Destroy(_currentWeb.gameObject);
+		}
+
+		public bool Aim(PlayerInput input, out Vector3 target)
+		{
+			target = Vector3.zero;
+			_aimDir = GetAimDirection(input.Look);
+			_aim = new Ray(_player.ninjaRope.transform.position, _aimDir);
+			Debug.DrawRay(transform.position, _aimDir);
+
+			// Raycast toward aiming direction and set target position if valid target found 
+			if (Physics.Raycast(_aim.origin, _aim.direction, out RaycastHit hit, _player.aimDistance, _player.ignoreLayer))
+			{
+				Debug.Log("Found a " + hit.collider.gameObject.name);
+				target = hit.point;
+				return true;
+			}
+
+			return false;
+		}
+
+		private Vector3 GetAimDirection(Vector3 look)
+		{
+			Vector3 lookEuler = new Vector3(-look.y, look.x);
+			Vector3 newDir = Quaternion.Euler(lookEuler) * _aimDir;
+
+			return (newDir * _player.aimRotSpeed * 100f * Time.deltaTime).normalized;
+		}
+	}
 }
