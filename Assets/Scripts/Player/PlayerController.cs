@@ -50,6 +50,10 @@ namespace SpiderSim.Player
 			{
 				AimingMode(true);
 			}
+			else if (_input.AimWeb == PlayerInput.Button.Up)
+			{
+				AimingMode(false);
+			}
 			else if (_input.AimWeb == PlayerInput.Button.Stay)
 			{
 				Aim();
@@ -58,11 +62,7 @@ namespace SpiderSim.Player
 					Shoot();
 				}
 			}
-			else if (_input.AimWeb == PlayerInput.Button.Up)
-			{
-				AimingMode(false);
-			}
-
+			
 			if (_input.AttachWeb == PlayerInput.Button.Down)
 			{
 				ninjaRope.AttachCurrentWeb();
@@ -113,15 +113,21 @@ namespace SpiderSim.Player
 		/// </summary>
 		private void Shoot()
 		{
-			Camera c = smoothCam.Cam;
-			Ray ray = c.ScreenPointToRay(_reticule.transform.position);
+			Ray ray = smoothCam.Cam.ScreenPointToRay(_reticule.transform.position);
 
 			if (Physics.Raycast(ray, out RaycastHit hit))
 			{
-				ninjaRope.ShootWeb(hit.point);
+				ninjaRope.ShootWeb(hit);
 			}
+
+			// TODO if no hit from raycast, shoot into empty space
 		}
 
+		/// <summary>
+		/// Creates a Vector3 that has x and y values between 0 and 1 to indicate a position on the GUI
+		/// from left to right and bottom to top.
+		/// </summary>
+		/// <returns>The relative position as a Vector3</returns>
 		private Vector3 GetReticuleScreenPosition()
 		{
 			Camera c = smoothCam.Cam;

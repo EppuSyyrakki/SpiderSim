@@ -23,5 +23,10 @@ namespace SpiderSim
 			public const string cancelWeb = "CancelWeb";
 			public const string jump = "Jump";
 		}
+
+		public class Tags
+		{
+			public const string web = "Web";
+		}
 	}
 }

@@ -476,6 +476,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 707842582323466329, guid: d67338d46f6c6674f8e550b0746d7612, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d67338d46f6c6674f8e550b0746d7612, type: 3}
       propertyPath: m_Name
       value: washCounter

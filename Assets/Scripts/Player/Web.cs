@@ -7,6 +7,9 @@ namespace SpiderSim.Player
 {
 	public class Web : MonoBehaviour, IPooledObject
 	{
+		[SerializeField]
+		private float colliderEndSpace = 1f;
+
 		private LineRenderer _line;
 		private CapsuleCollider _collider;
 
@@ -35,17 +38,21 @@ namespace SpiderSim.Player
 	        this.end = end;
 	        transform.rotation = rotation;
 
+            // if we are a new web we shouldn't enable the collider right away to prevent the spider from
+            // acting weird. If we are an old web being called from the pool, we can enable it right away.
             if (attached) EnableCollider();
             else Invoke(nameof(EnableCollider), 0.1f);
 		}
 
         private void Update()
         {
+            // set this object's forward to face the end point and move the object itself to halfway between
+            // beginning and end. This is done so the collider is in the right position and rotation.
 	        transform.forward = end - beginning;
 	        transform.position = (beginning + end) / 2;
             _line.SetPosition(0, beginning);
             _line.SetPosition(1, end);
-            _collider.height = Vector3.Distance(beginning, end) - 1f;
+            _collider.height = Vector3.Distance(beginning, end) - colliderEndSpace;
         }
 
         public void Activate(Vector3 position, Quaternion rotation)

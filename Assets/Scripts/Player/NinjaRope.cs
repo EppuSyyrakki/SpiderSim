@@ -41,11 +41,20 @@ namespace SpiderSim.Player
 			}
 		}
 
-		public void ShootWeb(Vector3 target)
+		public void ShootWeb(RaycastHit hit)
 		{
 			if (_currentWeb != null) return;
 
-			_target = target;
+			_target = hit.point;
+
+			// if we hit a web, the hit point must be adjusted to the center of the collider, not surface.
+			if (hit.collider.CompareTag(Names.Tags.web))
+			{
+				var col = hit.collider.gameObject.GetComponent<CapsuleCollider>();
+				Vector3 dirToCenter = -hit.normal * col.radius;
+				_target += dirToCenter;
+			}
+
 			Vector3 ownPos = transform.position;
 			GameObject webObject = Instantiate(_player.webPrefab, transform.position, Quaternion.identity);
 			_currentWeb = webObject.GetComponent<Web>();
@@ -53,7 +62,7 @@ namespace SpiderSim.Player
 			_currentWeb.SetupWeb(
 				ownPos, 
 				ownPos, 
-				Quaternion.LookRotation(target - ownPos));
+				Quaternion.LookRotation(_target - ownPos));
 			_hasFired = true;
 			_lerpT = 0;
 		}
