@@ -21,6 +21,10 @@ namespace SpiderSim
         public Vector3 previousTarget;
         public float moveSpeed;
         public float turnSpeed;
+
+        private bool canMove = true;
+
+        private Rigidbody rb;
         
         void Update()
         {
@@ -36,19 +40,28 @@ namespace SpiderSim
             transform.position = startingPos + offset;
             */
 
-            Vector3 vTraj = moveTarget - transform.position;
-
-
-            Quaternion qTargetRotation = Quaternion.LookRotation(vTraj, Vector3.up);
-            Quaternion qLimitedRotation = Quaternion.Slerp(transform.rotation, qTargetRotation, turnSpeed * Time.deltaTime);
-
-            transform.rotation = qLimitedRotation;
-            transform.position += transform.forward * (moveSpeed * Time.deltaTime);
-
-            if (Vector3.Distance(transform.position, moveTarget) < targetTreshold)
+            if (canMove)
             {
-                previousTarget = moveTarget;
-                moveTarget = spawner.GetNewDestination();
+                Vector3 vTraj = moveTarget - transform.position;
+
+
+                Quaternion qTargetRotation = Quaternion.LookRotation(vTraj, Vector3.up);
+                Quaternion qLimitedRotation = Quaternion.Slerp(transform.rotation, qTargetRotation, turnSpeed * Time.deltaTime);
+
+                transform.rotation = qLimitedRotation;
+                transform.position += transform.forward * (moveSpeed * Time.deltaTime);
+
+                if (Vector3.Distance(transform.position, moveTarget) < targetTreshold)
+                {
+                    previousTarget = moveTarget;
+                    moveTarget = spawner.GetNewDestination();
+                }
+            }
+            else
+            {
+                // Stops the fly from moving on its own. Outside force can still affect it a bit.
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
         }
 
@@ -57,6 +70,7 @@ namespace SpiderSim
             gameObject.SetActive(true);
             transform.position = position;
             transform.rotation = rotation;
+            rb = GetComponent<Rigidbody>();
         }
 
         public void Deactivate()
@@ -76,9 +90,15 @@ namespace SpiderSim
 
         private void OnCollisionEnter(Collision other)
         {
-            moveTarget = previousTarget;
-            Debug.Log("Fly collided, get new destination");
-            //moveTarget = spawner.GetNewDestination();
+            if (other.collider.CompareTag("Web"))
+            {
+                canMove = false;
+            }
+            else
+            {
+                moveTarget = previousTarget;
+                Debug.Log("Fly collided, get new destination");
+            }
         }
     }
 }
