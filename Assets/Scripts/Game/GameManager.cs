@@ -37,11 +37,12 @@ namespace SpiderSim.Game
 
 			DontDestroyOnLoad(gameObject);
 			state = new InGameState();
-		}
+        }
 
 		private void Update()
 		{
 			UpdateState();
+			UpdateMouse();
 		}
 
 		private static void UpdateState()
@@ -56,6 +57,22 @@ namespace SpiderSim.Game
 			}
 		}
 
+		// Updates the lock state of the cursor.
+		// None = Normal, can go out of screen
+		// Confined = Cursor locked inside the screen
+        private void UpdateMouse()
+        {
+            if (Input.GetKeyDown(KeyCode.Y))
+            {
+				Debug.Log("No lock mode");
+                Cursor.lockState = CursorLockMode.None;
+            } 
+            else if (Input.GetKeyDown(KeyCode.U))
+            {
+                Debug.Log("Confined lock mode");
+				Cursor.lockState = CursorLockMode.Confined;
+            }
+        }
 
 		//public void ChangeScene(int levelNumber)
 		//{
