@@ -19,7 +19,7 @@ namespace SpiderSim.Player
 
         private NinjaRope _source;
 
-		private void Awake()
+        private void Awake()
 		{
 			_line = GetComponent<LineRenderer>();
 			_collider = GetComponent<CapsuleCollider>();
@@ -41,7 +41,7 @@ namespace SpiderSim.Player
             // if we are a new web we shouldn't enable the collider right away to prevent the spider from
             // acting weird. If we are an old web being called from the pool, we can enable it right away.
             if (attached) EnableCollider();
-            else Invoke(nameof(EnableCollider), 0.1f);
+            // else Invoke(nameof(EnableCollider), 0.1f);
 		}
 
         private void Update()
@@ -53,6 +53,20 @@ namespace SpiderSim.Player
             _line.SetPosition(0, beginning);
             _line.SetPosition(1, end);
             _collider.height = Vector3.Distance(beginning, end) - colliderEndSpace;
+
+            /*
+            if (!attached)
+            {
+                if (Physics.Linecast(beginning, end, out RaycastHit hit, mask))
+                {
+                    IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
+                    Web newWeb = newFromPool.GameObject().GetComponent<Web>();
+                    newWeb.SetSource(this);
+                    newWeb.SetupWeb(_currentWeb.beginning, _currentWeb.end, Quaternion.LookRotation(_currentWeb.end - _currentWeb.beginning), true);
+
+                }
+            }
+            */
         }
 
         public void Activate(Vector3 position, Quaternion rotation)

@@ -27,8 +27,19 @@ namespace SpiderSim.Player
 			if (_currentWeb != null)
 			{
 				_currentWeb.beginning = transform.position;
+
+                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, gameObject.layer))
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
+                    Web newWeb = newFromPool.GameObject().GetComponent<Web>();
+                    newWeb.SetSource(this);
+                    newWeb.SetupWeb(hit.point, _currentWeb.end, Quaternion.LookRotation(_currentWeb.end - hit.point), true);
+
+                    _currentWeb.end = hit.point;
+                }
 			}
-		}
+        }
 
 		private void LerpShot()
 		{

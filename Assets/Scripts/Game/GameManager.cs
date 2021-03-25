@@ -39,6 +39,11 @@ namespace SpiderSim.Game
 			state = new InGameState();
         }
 
+        void Start()
+        {
+            Cursor.visible = false;
+		}
+
 		private void Update()
 		{
 			UpdateState();
