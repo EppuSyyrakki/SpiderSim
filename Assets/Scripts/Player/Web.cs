@@ -48,7 +48,8 @@ namespace SpiderSim.Player
         {
             // set this object's forward to face the end point and move the object itself to halfway between
             // beginning and end. This is done so the collider is in the right position and rotation.
-	        transform.forward = end - beginning;
+	        // TODO: end - beginning might be zero, logs a warning, FIX
+            transform.forward = end - beginning;
 	        transform.position = (beginning + end) / 2;
             _line.SetPosition(0, beginning);
             _line.SetPosition(1, end);

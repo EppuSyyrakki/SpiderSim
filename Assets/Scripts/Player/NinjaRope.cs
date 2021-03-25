@@ -11,6 +11,11 @@ namespace SpiderSim.Player
 		private bool _hasFired;
 		private Vector3 _target = Vector3.zero;
 		private float _lerpT = 0;
+		private Vector3 attachPoint = Vector3.zero;
+		private float attachTolerance = 0.1f;
+
+		[SerializeField]
+		private LayerMask ignoreLayer;
 
 		private void Awake()
 		{
@@ -30,14 +35,18 @@ namespace SpiderSim.Player
 
                 if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, gameObject.layer))
                 {
+	                if (Vector3.Distance(hit.point, attachPoint) < attachTolerance) return;
+
                     Debug.Log(hit.collider.gameObject.name);
-                    IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", _currentWeb.beginning, Quaternion.identity);
+                    Vector3 midPos = (hit.point - _currentWeb.end) / 2;
+                    IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", midPos, Quaternion.identity);
                     Web newWeb = newFromPool.GameObject().GetComponent<Web>();
                     newWeb.SetSource(this);
                     newWeb.SetupWeb(hit.point, _currentWeb.end, Quaternion.LookRotation(_currentWeb.end - hit.point), true);
 
                     _currentWeb.end = hit.point;
-                }
+                    attachPoint = hit.point;
+				}
 			}
         }
 
