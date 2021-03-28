@@ -11,8 +11,9 @@ namespace SpiderSim.Player
 		private bool _hasFired;
 		private Vector3 _target = Vector3.zero;
 		private float _lerpT = 0;
-		private Vector3 attachPoint = Vector3.zero;
-		private float attachTolerance = 0.1f;
+		private Vector3 latestAttachPoint = Vector3.zero;
+        private float attachTolerance = 0.1f;
+        [SerializeField] public float attachHeight = 0.5f;
 
 		[SerializeField]
 		private LayerMask ignoreLayer;
@@ -35,7 +36,22 @@ namespace SpiderSim.Player
 
                 if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, gameObject.layer))
                 {
-	                if (Vector3.Distance(hit.point, attachPoint) < attachTolerance) return;
+                    Vector3 hitNormal = hit.point + (hit.normal * attachHeight);
+
+                    if (Vector3.Distance(hitNormal, latestAttachPoint) < attachTolerance) return;
+
+                    Debug.Log(hit.collider.gameObject.name);
+                    Vector3 midPos = (hitNormal - _currentWeb.end) / 2;
+                    IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", midPos, Quaternion.identity);
+                    Web newWeb = newFromPool.GameObject().GetComponent<Web>();
+                    newWeb.SetSource(this);
+                    newWeb.SetupWeb(hitNormal, _currentWeb.end, Quaternion.LookRotation(_currentWeb.end - hitNormal), true);
+
+                    _currentWeb.end = hitNormal;
+                    latestAttachPoint = hitNormal;
+
+					/*
+	                if (Vector3.Distance(hit.point, latestAttachPoint) < attachTolerance) return;
 
                     Debug.Log(hit.collider.gameObject.name);
                     Vector3 midPos = (hit.point - _currentWeb.end) / 2;
@@ -45,7 +61,8 @@ namespace SpiderSim.Player
                     newWeb.SetupWeb(hit.point, _currentWeb.end, Quaternion.LookRotation(_currentWeb.end - hit.point), true);
 
                     _currentWeb.end = hit.point;
-                    attachPoint = hit.point;
+                    latestAttachPoint = hit.point;
+					*/
 				}
 			}
         }
