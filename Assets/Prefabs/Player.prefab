@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17cbdf57fe1c59b48a60e208c15706eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attachHeight: 0.1
   ignoreLayer:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
 --- !u!1 &7644836829583018044
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +271,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 1324680882}
   - {fileID: 6757185163653745695}
@@ -776,7 +777,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 90793496}
   stepCooldown: 0
@@ -1572,7 +1573,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 302098215}
   - {fileID: 8634589291851047553}
@@ -2061,7 +2062,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 8634589291851047553}
   - {fileID: 1529482867}
@@ -2312,7 +2313,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 49142271}
   - {fileID: 302098215}
@@ -3142,7 +3143,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 902956907}
   - {fileID: 1324680882}
@@ -3363,7 +3364,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 6757185163653745695}
   - {fileID: 90793496}
@@ -3646,7 +3647,7 @@ MonoBehaviour:
   forwardNormalAdjustSpeed: 2
   walkableLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   gravityOffDistance: 0.2
   body: {fileID: 8634589292710360741}
   legs:
@@ -3972,7 +3973,7 @@ MonoBehaviour:
   debugIconScale: 5
   stepLayer:
     serializedVersion: 2
-    m_Bits: 1073741825
+    m_Bits: 65
   asyncChain:
   - {fileID: 1529482867}
   stepCooldown: 0

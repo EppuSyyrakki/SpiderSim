@@ -41,7 +41,7 @@ namespace SpiderSim.Player
             // if we are a new web we shouldn't enable the collider right away to prevent the spider from
             // acting weird. If we are an old web being called from the pool, we can enable it right away.
             if (attached) EnableCollider();
-            // else Invoke(nameof(EnableCollider), 0.1f);
+            else Invoke(nameof(EnableCollider), 0.1f);
 		}
 
         private void Update()

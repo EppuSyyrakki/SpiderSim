@@ -15,8 +15,8 @@ namespace SpiderSim.Player
         private float attachTolerance = 0.1f;
         [SerializeField] public float attachHeight = 0.5f;
 
-		[SerializeField]
-		private LayerMask ignoreLayer;
+        [SerializeField]
+        private LayerMask ignoreLayer;
 
 		private void Awake()
 		{
@@ -34,7 +34,7 @@ namespace SpiderSim.Player
 			{
 				_currentWeb.beginning = transform.position;
 
-                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, gameObject.layer))
+                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, ignoreLayer))
                 {
                     Vector3 hitNormal = hit.point + (hit.normal * attachHeight);
 
