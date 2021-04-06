@@ -28,7 +28,6 @@ namespace SpiderSim
             {
                 Vector3 spawnPoint = GetNewDestination();
                 IPooledObject mothObj = objectPooler.SpawnFromPool("Moth", spawnPoint, Quaternion.identity);
-
                 Moth moth = mothObj.GameObject().GetComponent<Moth>();
                 moth.moveTarget = GetNewDestination();
                 moth.previousTarget = spawnPoint;
@@ -42,9 +41,15 @@ namespace SpiderSim
             CheckSurroundings();
         }
 
+        private void CheckSurroundings()
+        {
+            obstacles.Clear();
+            obstacles.AddRange(Physics.OverlapSphere(transform.position, maxDistance, layersToCheck));
+        }
+
         public Vector3 GetNewDestination()
         {
-            float minDistance = maxDistance / 3;
+            float minDistance = maxDistance / 2;
             Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
             Vector3 destination = transform.TransformPoint(localDestination);
 
@@ -66,18 +71,16 @@ namespace SpiderSim
 
             if (!destinationOK)
             {
-                Debug.Log("Fly couldn't find a spot");
+                Debug.Log("Moth couldn't find a spot");
             }
-
-            /*
-            while (!CheckNewDestination(destination))
-            {
-                localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
-                destination = transform.TransformPoint(localDestination);
-            }
-            */
 
             return destination;
+        }
+
+        public Vector3 GetCenterCoordinates()
+        {
+            Vector3 localDestination = transform.position;
+            return localDestination;
         }
 
         // Checks if the destination is inside a collider. If it's not inside a collider,
@@ -95,11 +98,10 @@ namespace SpiderSim
             return true;
         }
 
-        private void CheckSurroundings()
+        private void OnDrawGizmos()
         {
-            obstacles.Clear();
-            obstacles.AddRange(Physics.OverlapSphere(transform.position, maxDistance, layersToCheck));
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(transform.position, maxDistance);
         }
     }
-
 }

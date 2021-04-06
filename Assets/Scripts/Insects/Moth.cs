@@ -14,11 +14,11 @@ namespace SpiderSim
         public Vector3 previousTarget;
         public float moveSpeed;
         public float turnSpeed;
+        public bool goingToLamp = false;
 
         public override void Move()
         {
             Vector3 vTraj = moveTarget - transform.position;
-
 
             Quaternion qTargetRotation = Quaternion.LookRotation(vTraj, Vector3.up);
             Quaternion qLimitedRotation = Quaternion.Slerp(transform.rotation, qTargetRotation, turnSpeed * Time.deltaTime);
@@ -28,8 +28,18 @@ namespace SpiderSim
 
             if (Vector3.Distance(transform.position, moveTarget) < targetTreshold)
             {
-                previousTarget = moveTarget;
-                moveTarget = spawner.GetNewDestination();
+                if (goingToLamp)
+                {
+                    goingToLamp = false;
+                    moveTarget = spawner.GetNewDestination();
+                }
+                else
+                {
+                    goingToLamp = true;
+                    previousTarget = moveTarget;
+                    moveTarget = spawner.GetCenterCoordinates();
+                }
+                
             }
         }
 
@@ -46,7 +56,7 @@ namespace SpiderSim
             }
             else
             {
-                //moveTarget = previousTarget;
+                moveTarget = previousTarget;
                 Debug.Log("Moth collided, get new destination");
             }
         }
