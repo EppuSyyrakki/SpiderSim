@@ -279,6 +279,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6406312cb72d1f741b284e09dbafe60a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f60d85239cdc5a344a563b1b612ae75f, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 6406312cb72d1f741b284e09dbafe60a, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 589244d1d68248f4eb43c65d385def5a, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 6406312cb72d1f741b284e09dbafe60a, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f619760bd3d2c408a6ac8813410f9a, type: 2}
     - target: {fileID: 919132149155446097, guid: 6406312cb72d1f741b284e09dbafe60a, type: 3}
       propertyPath: m_Name
       value: laundryBasket
@@ -448,7 +460,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 929f4a5f9800205418f81eecfeaa81db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -700,7 +712,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 69491570cee1cde4d97055cf6d29a61f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1763,7 +1775,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25794
+  m_Name: pb_Mesh26986
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2141,7 +2153,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25930
+  m_Name: pb_Mesh27114
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2667,7 +2679,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25690
+  m_Name: pb_Mesh26920
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2888,6 +2900,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cbb0064f33eb9f84f8aca8762ef8739c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6837ec32276d7394daaf1d8e12c7d06d, type: 2}
     - target: {fileID: 919132149155446097, guid: cbb0064f33eb9f84f8aca8762ef8739c, type: 3}
       propertyPath: m_Name
       value: bathroomWall
@@ -4472,7 +4488,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25654
+  m_Name: pb_Mesh26902
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4693,6 +4709,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5851887438019743011, guid: 8dd5b621fb7e47849a3c1de1132d0c99, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 59ff421981a2b0b41846bc48681dad19, type: 2}
+    - target: {fileID: -5088992975503125922, guid: 8dd5b621fb7e47849a3c1de1132d0c99, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca37b28e4e56fdc4da2434a579532150, type: 2}
+    - target: {fileID: -3654587623716869456, guid: 8dd5b621fb7e47849a3c1de1132d0c99, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 853c2502d37d5d0439b847abb48d75b1, type: 2}
     - target: {fileID: 919132149155446097, guid: 8dd5b621fb7e47849a3c1de1132d0c99, type: 3}
       propertyPath: m_Name
       value: showerWall
@@ -4781,6 +4809,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0a301f7b4ae8210418c4a59a5862381c, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94d3d14df85ac324fa6c554ee79dd264, type: 2}
     - target: {fileID: 919132149155446097, guid: 0a301f7b4ae8210418c4a59a5862381c, type: 3}
       propertyPath: m_Name
       value: mirror
@@ -4869,6 +4901,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: bd1a70a292f44464fa626e0b08d07bef, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: d3f619760bd3d2c408a6ac8813410f9a, type: 2}
+    - target: {fileID: -7511558181221131132, guid: bd1a70a292f44464fa626e0b08d07bef, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 026cc11e267bebe4bb64240e746f5d80, type: 2}
     - target: {fileID: 919132149155446097, guid: bd1a70a292f44464fa626e0b08d07bef, type: 3}
       propertyPath: m_Name
       value: sinkTable
@@ -4992,7 +5032,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25906
+  m_Name: pb_Mesh24266
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5225,7 +5265,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh25826
+  m_Name: pb_Mesh27008
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5446,6 +5486,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e1aa25f17a89c3b41b06e81e17272200, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7d55864d35fe9f24ebce3124a193a672, type: 2}
     - target: {fileID: 919132149155446097, guid: e1aa25f17a89c3b41b06e81e17272200, type: 3}
       propertyPath: m_Name
       value: towelFloor
@@ -5704,6 +5748,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9107562074073525061, guid: 5ccaf0bb3c8ff3f4b9e0ee73da006a27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fbfd2814b6c8e634b932e417b92825b2, type: 2}
+    - target: {fileID: -8726429652391383021, guid: 5ccaf0bb3c8ff3f4b9e0ee73da006a27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c83b06bf53901a446b0ca478f04eb883, type: 2}
     - target: {fileID: -8679921383154817045, guid: 5ccaf0bb3c8ff3f4b9e0ee73da006a27, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5764,6 +5816,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: towelsAndHooks
       objectReference: {fileID: 0}
+    - target: {fileID: 2257133489071525178, guid: 5ccaf0bb3c8ff3f4b9e0ee73da006a27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c83b06bf53901a446b0ca478f04eb883, type: 2}
+    - target: {fileID: 7558451380657570616, guid: 5ccaf0bb3c8ff3f4b9e0ee73da006a27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 068936aa1888e7c45bfc2e43a26ffc3c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ccaf0bb3c8ff3f4b9e0ee73da006a27, type: 3}
 --- !u!1001 &1675443444
@@ -5829,6 +5889,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5226e59eb2c01f74db12f59474779545, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69491570cee1cde4d97055cf6d29a61f, type: 2}
     - target: {fileID: 919132149155446097, guid: 5226e59eb2c01f74db12f59474779545, type: 3}
       propertyPath: m_Name
       value: bathroomWallWindow
@@ -6012,7 +6076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1808222473
 Transform:
   m_ObjectHideFlags: 0
