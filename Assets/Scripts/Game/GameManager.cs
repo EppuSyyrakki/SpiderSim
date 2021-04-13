@@ -7,6 +7,7 @@ namespace SpiderSim.Game
 {
 	public class GameManager : MonoBehaviour
 	{
+		// Test edit, problems with GitKraken
 		private static GameManager instance = null;
 		private static GameState state = null;
 
