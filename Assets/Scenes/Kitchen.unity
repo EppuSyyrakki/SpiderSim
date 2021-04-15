@@ -4100,6 +4100,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8712958030181397072, guid: 85476153ccad166429b82810267dfe34, type: 3}
+--- !u!1 &1245417625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3163426152972158847, guid: 3cecc5335cbde564eb3756b3792e2c22, type: 3}
+  m_PrefabInstance: {fileID: 1731750511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1258351846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8281010868454003644, guid: d67338d46f6c6674f8e550b0746d7612, type: 3}
@@ -11017,6 +11022,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6091594969466157859, guid: 9ec08667405bb864fb7af2b932ea5d35, type: 3}
+      propertyPath: jumpForce
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8173401800663089502, guid: 9ec08667405bb864fb7af2b932ea5d35, type: 3}
+      propertyPath: _reticule
+      value: 
+      objectReference: {fileID: 1245417625}
     - target: {fileID: 8718142952016414658, guid: 9ec08667405bb864fb7af2b932ea5d35, type: 3}
       propertyPath: m_Name
       value: Player original

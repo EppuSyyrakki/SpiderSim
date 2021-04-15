@@ -11,7 +11,7 @@ namespace SpiderSim.Player
 		private float colliderEndSpace = 1f;
 
 		private LineRenderer _line;
-		private CapsuleCollider _collider;
+		private BoxCollider _collider;
 
         public Vector3 beginning;
         public Vector3 end;
@@ -22,7 +22,7 @@ namespace SpiderSim.Player
         private void Awake()
 		{
 			_line = GetComponent<LineRenderer>();
-			_collider = GetComponent<CapsuleCollider>();
+			_collider = GetComponent<BoxCollider>();
 			_collider.enabled = false;
 		}
 
@@ -53,7 +53,9 @@ namespace SpiderSim.Player
 	        transform.position = (beginning + end) / 2;
             _line.SetPosition(0, beginning);
             _line.SetPosition(1, end);
-            _collider.height = Vector3.Distance(beginning, end) - colliderEndSpace;
+            float length = Vector3.Distance(beginning, end) - colliderEndSpace;
+            Vector3 size = _collider.size;
+            _collider.size = new Vector3(size.x, size.y, length);
 
             /*
             if (!attached)

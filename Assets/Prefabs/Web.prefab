@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5027690031350608242}
   - component: {fileID: 6490630248195693188}
   - component: {fileID: 3839773666027448237}
-  - component: {fileID: -7732708341070283749}
+  - component: {fileID: 3661398726449732575}
   m_Layer: 6
   m_Name: Web
   m_TagString: Web
@@ -83,8 +83,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.058307648
-        value: 0.039474487
+        time: 0.0031852722
+        value: 0.010269165
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -143,12 +143,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290313bd403c6ec4a8d9c81d34e34489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderEndSpace: 0.5
+  colliderEndSpace: 0.175
   beginning: {x: 0, y: 0, z: 0}
   end: {x: 0, y: 0, z: 0}
   attached: 0
---- !u!136 &-7732708341070283749
-CapsuleCollider:
+--- !u!65 &3661398726449732575
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -157,7 +157,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.75
-  m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.5}
+  serializedVersion: 2
+  m_Size: {x: 0.075, y: 0.075, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

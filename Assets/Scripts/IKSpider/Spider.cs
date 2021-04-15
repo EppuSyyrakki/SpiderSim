@@ -34,7 +34,7 @@ public class Spider : MonoBehaviour {
     public float turnSpeed;
     [Range(0.001f, 1)]
     public float walkDrag;
-    [Range(100, 1000)]
+    [Range(10, 200)]
     public float jumpForce;
 
     [Header("Grounding")]
