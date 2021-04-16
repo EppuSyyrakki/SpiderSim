@@ -42,7 +42,6 @@ namespace SpiderSim
             }
         }
 
-
         void Update()
         {
 	        CheckSurroundings();
@@ -80,14 +79,6 @@ namespace SpiderSim
             {
                 Debug.Log("Fly couldn't find a spot");
             }
-
-            /*
-            while (!CheckNewDestination(destination))
-            {
-                localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
-                destination = transform.TransformPoint(localDestination);
-            }
-            */
 
             return destination;
         }

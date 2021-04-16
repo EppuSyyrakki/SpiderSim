@@ -45,12 +45,12 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
+                Debug.Log("Fly collided with web");
                 canMove = false;
             }
             else
             {
                 moveTarget = previousTarget;
-                Debug.Log("Fly collided, get new destination");
             }
         }
     }

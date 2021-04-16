@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace SpiderSim
 {
     public class RoachSpawner : MonoBehaviour
     {
         public ObjectPooler objectPooler;
+
+        private NavMeshAgent agent;
 
         private List<Roach> roaches = new List<Roach>();
 
@@ -22,6 +25,8 @@ namespace SpiderSim
                 Vector3 spawnPoint = GetNewDestination();
                 IPooledObject roachObj = objectPooler.SpawnFromPool("Roach", spawnPoint, Quaternion.identity);
                 Roach roach = roachObj.GameObject().GetComponent<Roach>();
+                roach.previousTarget = GetNewDestination();
+                roach.GetNewDestination();
                 roach.AssignSpawner(this);
                 roaches.Add(roach);
             }
@@ -29,7 +34,13 @@ namespace SpiderSim
 
         public Vector3 GetNewDestination()
         {
-            return Vector3.zero;
+            return transform.position;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, walkRadius);
         }
     }
 }

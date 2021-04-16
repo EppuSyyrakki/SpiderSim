@@ -71,6 +71,7 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
+                Debug.Log("Ant collided with web");
                 canMove = false;
             }
             else
