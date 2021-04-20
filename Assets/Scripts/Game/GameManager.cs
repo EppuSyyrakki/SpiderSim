@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpiderSim.Game
 {
@@ -49,6 +50,11 @@ namespace SpiderSim.Game
 		{
 			UpdateState();
 			UpdateMouse();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+				ReturnToMainMenu();
+            }
 		}
 
 		private static void UpdateState()
@@ -78,6 +84,11 @@ namespace SpiderSim.Game
                 Debug.Log("Confined lock mode");
 				Cursor.lockState = CursorLockMode.Confined;
             }
+        }
+
+        private void ReturnToMainMenu()
+        {
+            SceneManager.LoadScene(0);
         }
 
 		//public void ChangeScene(int levelNumber)
