@@ -34,13 +34,23 @@ namespace SpiderSim.Player
 			{
 				_currentWeb.beginning = transform.position;
 
-                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, ignoreLayer))
+                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, ~ignoreLayer))
                 {
-                    Vector3 hitNormal = hit.point + (hit.normal * attachHeight);
+					if (Vector3.Distance(hit.point, latestAttachPoint) < attachTolerance) return;
 
-                    if (Vector3.Distance(hitNormal, latestAttachPoint) < attachTolerance) return;
+                    Vector3 hitNormal = hit.point;
 
-                    Debug.Log(hit.collider.gameObject.name);
+					if (hit.collider.CompareTag(Names.Tags.web))
+					{
+						var col = hit.collider.gameObject.GetComponent<BoxCollider>();
+						Vector3 dirToCenter = col.size.x / 2 * -hit.normal;
+						hitNormal += dirToCenter;
+					}
+					else 
+					{
+						hitNormal = hit.point + (hit.normal * attachHeight);
+					}
+
                     Vector3 midPos = (hitNormal - _currentWeb.end) / 2;
                     IPooledObject newFromPool = ObjectPooler.Instance.SpawnFromPool("Web", midPos, Quaternion.identity);
                     Web newWeb = newFromPool.GameObject().GetComponent<Web>();
@@ -87,8 +97,8 @@ namespace SpiderSim.Player
 			// if we hit a web, the hit point must be adjusted to the center of the collider, not surface.
 			if (hit.collider.CompareTag(Names.Tags.web))
 			{
-				var col = hit.collider.gameObject.GetComponent<CapsuleCollider>();
-				Vector3 dirToCenter = -hit.normal * col.radius;
+				var col = hit.collider.gameObject.GetComponent<BoxCollider>();
+				Vector3 dirToCenter = col.size.x / 2 * -hit.normal;
 				_target += dirToCenter;
 			}
 

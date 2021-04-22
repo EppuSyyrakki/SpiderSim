@@ -22,7 +22,7 @@ namespace SpiderSim.Player
 		[Range(0.1f, 0.5f)]
 		public float aimZoneX = 0.2f, aimZoneY = 0.25f;
 		public float webShotSpeed = 10f;
-		public LayerMask ignoreLayer;
+		// public LayerMask ignoreLayer;
 		public GameObject webPrefab;
 
 		[Range(0, 0.33f)]

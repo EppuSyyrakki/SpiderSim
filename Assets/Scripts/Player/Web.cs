@@ -53,7 +53,7 @@ namespace SpiderSim.Player
 	        transform.position = (beginning + end) / 2;
             _line.SetPosition(0, beginning);
             _line.SetPosition(1, end);
-            float length = Vector3.Distance(beginning, end) - colliderEndSpace;
+            float length = Mathf.Abs(Vector3.Distance(beginning, end) - colliderEndSpace);
             Vector3 size = _collider.size;
             _collider.size = new Vector3(size.x, size.y, length);
 
@@ -77,6 +77,7 @@ namespace SpiderSim.Player
 	        gameObject.SetActive(true);
             transform.position = position;
 	        transform.rotation = rotation;
+            gameObject.layer = 6;
         }
 
         public void Deactivate()

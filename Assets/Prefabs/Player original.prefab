@@ -4735,7 +4735,7 @@ GameObject:
   - component: {fileID: 8718142952016414660}
   - component: {fileID: 1092450445451969411}
   m_Layer: 3
-  m_Name: Player 1
+  m_Name: Player original
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4779,9 +4779,6 @@ MonoBehaviour:
   aimZoneX: 0.2
   aimZoneY: 0.33
   webShotSpeed: 10
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 8
   webPrefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
   reticuleYOffset: 0.153
   _reticule: {fileID: 0}

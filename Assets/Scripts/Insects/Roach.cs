@@ -47,14 +47,14 @@ namespace SpiderSim
 
             if (NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1))
             {
-                Debug.Log("Got new destination");
+                // Debug.Log("Got new destination");
                 previousTarget = currentTarget;
                 currentTarget = hit.position;
                 agent.SetDestination(currentTarget);
             }
             else
             {
-                Debug.Log("Go to previous target");
+                // Debug.Log("Go to previous target");
                 currentTarget = previousTarget;
                 agent.SetDestination(currentTarget);
             }
@@ -68,7 +68,7 @@ namespace SpiderSim
             }
             else
             {
-                Debug.Log("Roach collided");
+                // Debug.Log("Roach collided");
             }
         }
 
