@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace SpiderSim
 {
@@ -12,14 +14,30 @@ namespace SpiderSim
         public GameObject[] waypoints;
 
         [SerializeField] private float minDistance = 1f;
-        [SerializeField] public float moveSpeed = 10f;
+
+        public float minSpeed = 1f;
+        public float maxSpeed = 1.1f;
+        private float moveSpeed = 1f;
 
         private int currentTarget;
+        private Vector3 targetVector;
         private bool goingForward = true;
+
+        private float offSet;
+        public float minOffSet = 0.1f;
+        public float maxOffSet = 0.5f;
+
+        private void Start()
+        {
+            offSet = Random.Range(minOffSet, maxOffSet);
+            moveSpeed = Random.Range(minSpeed, maxSpeed);
+        }
 
         public override void Update()
         {
-            float distance = Vector3.Distance(gameObject.transform.position, waypoints[currentTarget].transform.position);
+            SetTargetOffSet();
+
+            float distance = Vector3.Distance(gameObject.transform.position, targetVector);
 
             if (canMove)
             {
@@ -53,8 +71,17 @@ namespace SpiderSim
 
         public override void Move()
         {
-            gameObject.transform.LookAt(waypoints[currentTarget].transform.position);
+            SetTargetOffSet();
+
+            gameObject.transform.LookAt(targetVector);
             gameObject.transform.position += gameObject.transform.forward * moveSpeed * Time.deltaTime;
+        }
+
+        private void SetTargetOffSet()
+        {
+            targetVector = waypoints[currentTarget].transform.position;
+            targetVector.x += offSet;
+            targetVector.z += offSet;
         }
 
         public void AssignSpawner(AntSpawner spawner)
