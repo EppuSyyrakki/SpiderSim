@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5085512613722808286}
   - component: {fileID: 5085512613722808285}
   - component: {fileID: 4700717097347298304}
+  - component: {fileID: 5715536703848912428}
   m_Layer: 7
   m_Name: Roach
   m_TagString: Untagged
@@ -128,6 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   canMove: 1
+  layersToCheck:
+    serializedVersion: 2
+    m_Bits: 0
   agent: {fileID: 4700717097347298304}
   targetTreshold: 0.2
   minDistance: 3
@@ -135,6 +139,7 @@ MonoBehaviour:
   moveSpeed: 1
   previousTarget: {x: 0, y: 0, z: 0}
   currentTarget: {x: 0, y: 0, z: 0}
+  timerDuration: 2
 --- !u!195 &4700717097347298304
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -157,3 +162,16 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &5715536703848912428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085512613722808284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

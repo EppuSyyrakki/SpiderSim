@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 namespace SpiderSim
 {
@@ -24,12 +26,22 @@ namespace SpiderSim
         public Vector3 previousTarget;
         public Vector3 currentTarget;
 
+        private float timer;
+        [Tooltip("Fail safe timer in case the roach gets stuck")] public float timerDuration = 2f;
+
+        public void Start()
+        {
+            timer = timerDuration;
+        }
+
         public override void Move()
         {
-            if (Vector3.Distance(transform.position, currentTarget) < targetTreshold)
+            timer -= Time.deltaTime;
+
+            if (Vector3.Distance(transform.position, currentTarget) < targetTreshold || timer < 0)
             {
                 GetNewDestination();
-                agent.SetDestination(currentTarget);
+                timer = timerDuration;
             }
         }
 
@@ -41,21 +53,35 @@ namespace SpiderSim
         public void GetNewDestination()
         {
             Vector3 randomDirection = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
-
             randomDirection += transform.position;
+
             NavMeshHit hit;
 
-            if (NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1))
+            bool destinationOK = false;
+
+            for (int i = 0; i < 10; i++)
             {
-                // Debug.Log("Got new destination");
-                previousTarget = currentTarget;
-                currentTarget = hit.position;
-                agent.SetDestination(currentTarget);
+                if (NavMesh.SamplePosition(randomDirection, out hit, maxDistance, 1))
+                {
+                    previousTarget = currentTarget;
+                    currentTarget = hit.position;
+                    agent.SetDestination(currentTarget);
+                    destinationOK = true;
+                    break;
+                }
+                else
+                {
+                    randomDirection = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
+                    randomDirection += transform.position;
+                }
             }
-            else
+
+            if (!destinationOK)
             {
-                // Debug.Log("Go to previous target");
+                Debug.Log("Didn't find a new target, go to previous");
+                Vector3 temporarySave = currentTarget;
                 currentTarget = previousTarget;
+                previousTarget = temporarySave;
                 agent.SetDestination(currentTarget);
             }
         }
@@ -66,9 +92,14 @@ namespace SpiderSim
             {
                 canMove = false;
             }
+            else if (other.collider.CompareTag("Ant"))
+            {
+                GetNewDestination();
+                timer = timerDuration;
+            }
             else
             {
-                // Debug.Log("Roach collided");
+                //Debug.Log("Roach collided with: " + other.gameObject.name);
             }
         }
 
