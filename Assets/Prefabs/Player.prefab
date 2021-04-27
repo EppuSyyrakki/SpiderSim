@@ -4361,7 +4361,7 @@ MonoBehaviour:
   YSensitivity: 2
   positionInterpolationType: 0
   camUpperAngleMargin: 10
-  camLowerAngleMargin: 80
+  camLowerAngleMargin: 90
   enableClipZoom: 0
   clipZoomLayer:
     serializedVersion: 2
