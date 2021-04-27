@@ -640,6 +640,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 52e1a780015196e45ab9992d03c63670, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 26b663b33707b9847b9d84303e4fb278, type: 2}
     - target: {fileID: 919132149155446097, guid: 52e1a780015196e45ab9992d03c63670, type: 3}
       propertyPath: m_Name
       value: toilet
@@ -1195,6 +1199,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 8d5a61986782ed84e8ff2344d045a0b5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31eb0574a9106df458f8210070e306e9, type: 2}
     - target: {fileID: -1461304994638716399, guid: 8d5a61986782ed84e8ff2344d045a0b5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1576,6 +1584,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 2a328066fb2373e45a3747267932129a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e8e34093435629c48b40a3df70757ef4, type: 2}
     - target: {fileID: 919132149155446097, guid: 2a328066fb2373e45a3747267932129a, type: 3}
       propertyPath: m_Name
       value: BathroomWall_solid
@@ -2178,6 +2190,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0b5f5e85fe581b84b9be523f3530f2a3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca6167d5f13674b4e9d7eae01b883cc9, type: 2}
     - target: {fileID: 919132149155446097, guid: 0b5f5e85fe581b84b9be523f3530f2a3, type: 3}
       propertyPath: m_Name
       value: BathroomWall_roof
@@ -3276,6 +3292,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 557f211b8300dfd47a62a235876d536e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7de16e6d815f07f40b39b12d20537031, type: 2}
     - target: {fileID: 919132149155446097, guid: 557f211b8300dfd47a62a235876d536e, type: 3}
       propertyPath: m_Name
       value: BathroomWall_door
@@ -3580,6 +3600,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 0b5f5e85fe581b84b9be523f3530f2a3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca6167d5f13674b4e9d7eae01b883cc9, type: 2}
     - target: {fileID: 919132149155446097, guid: 0b5f5e85fe581b84b9be523f3530f2a3, type: 3}
       propertyPath: m_Name
       value: BathroomWall_floor
@@ -4251,6 +4275,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 8d5a61986782ed84e8ff2344d045a0b5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31eb0574a9106df458f8210070e306e9, type: 2}
     - target: {fileID: -1461304994638716399, guid: 8d5a61986782ed84e8ff2344d045a0b5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
