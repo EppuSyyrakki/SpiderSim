@@ -3484,46 +3484,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[2].tag
-      value: Moth
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[3].tag
-      value: Ant
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[4].tag
-      value: Roach
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[2].size
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[3].size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[4].size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 7436507554900612730, guid: 9456bfc0e44a2504db6d251fb66b0dae, type: 3}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[3].prefab
-      value: 
-      objectReference: {fileID: 7159923769031619592, guid: c0d10a5567aa39d4ea1cec4520247645, type: 3}
-    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
-      propertyPath: pools.Array.data[4].prefab
-      value: 
-      objectReference: {fileID: 5085512613722808284, guid: 467d21e8fdb1d0e4c9dbf4a52a4fb770, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
 --- !u!850595691 &798119026
@@ -15036,7 +14996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7299613509429416889, guid: 4b27f416035e0b94daf0ea9802d6cca7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.880814
+      value: -22.84
       objectReference: {fileID: 0}
     - target: {fileID: 7299613509429416889, guid: 4b27f416035e0b94daf0ea9802d6cca7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15044,7 +15004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7299613509429416889, guid: 4b27f416035e0b94daf0ea9802d6cca7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.55
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 7299613509429416889, guid: 4b27f416035e0b94daf0ea9802d6cca7, type: 3}
       propertyPath: m_LocalRotation.w

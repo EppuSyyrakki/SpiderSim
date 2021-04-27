@@ -14,7 +14,7 @@ namespace SpiderSim
         private RoachSpawner spawner;
 
         private List<Collider> obstacles = new List<Collider>();
-        [SerializeField] private LayerMask layersToCheck;
+        //[SerializeField] private LayerMask layersToCheck;
 
         public NavMeshAgent agent;
 
@@ -23,8 +23,8 @@ namespace SpiderSim
         [SerializeField] public float maxDistance = 2f;
         [SerializeField] public float moveSpeed = 1f;
 
-        public Vector3 previousTarget;
-        public Vector3 currentTarget;
+        [HideInInspector] public Vector3 previousTarget;
+        [HideInInspector] public Vector3 currentTarget;
 
         private float timer;
         [Tooltip("Fail safe timer in case the roach gets stuck")] public float timerDuration = 2f;

@@ -22,17 +22,18 @@ namespace SpiderSim
 
             for (int i = 0; i < amountToSpawn; i++)
             {
-                Vector3 spawnPoint = GetNewDestination();
+                Vector3 spawnPoint = GetStartingPoint();
+                Debug.Log(spawnPoint);
                 IPooledObject roachObj = objectPooler.SpawnFromPool("Roach", spawnPoint, Quaternion.identity);
                 Roach roach = roachObj.GameObject().GetComponent<Roach>();
-                roach.previousTarget = GetNewDestination();
+                roach.previousTarget = spawnPoint;
                 roach.GetNewDestination();
                 roach.AssignSpawner(this);
                 roaches.Add(roach);
             }
         }
 
-        public Vector3 GetNewDestination()
+        public Vector3 GetStartingPoint()
         {
             return transform.position;
         }

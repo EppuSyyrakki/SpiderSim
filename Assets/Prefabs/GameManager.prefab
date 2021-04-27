@@ -51,6 +51,15 @@ MonoBehaviour:
   - tag: Web
     prefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
     size: 100
+  - tag: Moth
+    prefab: {fileID: 7436507554900612730, guid: 9456bfc0e44a2504db6d251fb66b0dae, type: 3}
+    size: 50
+  - tag: Ant
+    prefab: {fileID: 7159923769031619592, guid: c0d10a5567aa39d4ea1cec4520247645, type: 3}
+    size: 10
+  - tag: Roach
+    prefab: {fileID: 5085512613722808284, guid: 467d21e8fdb1d0e4c9dbf4a52a4fb770, type: 3}
+    size: 5
 --- !u!114 &1417718182
 MonoBehaviour:
   m_ObjectHideFlags: 0
