@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{53e1e365-6d2f-46ab-a261-33a6415c564d}">
+		<property name="assetPath">
+			<value>Bathroom.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>76.800022675736955</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1550053e-ca9a-4147-9ef0-0359361911d8}</destination>
+		</relationship>
+	</object>
+</objects>
