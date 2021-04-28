@@ -41,19 +41,15 @@ namespace SpiderSim.Game
 			state = new InGameState();
         }
 
-        void Start()
-        {
-            Cursor.visible = false;
-		}
-
-		private void Update()
+        private void Update()
 		{
 			UpdateState();
-			UpdateMouse();
+			//UpdateMouse();
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
 				ReturnToMainMenu();
+                Cursor.visible = true;
             }
 		}
 

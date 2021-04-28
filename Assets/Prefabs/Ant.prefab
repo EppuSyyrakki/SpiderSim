@@ -105,15 +105,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7159923769031619592}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a624e1cfbeb9234a815be3c9b86532d, type: 3}
+  m_Script: {fileID: 11500000, guid: 87cebf054a766874baae0b02c9d2bffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   canMove: 1
   waypoints: []
-  minDistance: 0.1
+  minDistance: 1
   minSpeed: 1
-  maxSpeed: 1.3
-  moveSpeed: 1
+  maxSpeed: 1.1
   minOffSet: 0.1
   maxOffSet: 0.5
