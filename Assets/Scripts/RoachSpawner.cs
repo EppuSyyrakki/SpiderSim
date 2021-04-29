@@ -12,9 +12,14 @@ namespace SpiderSim
         private NavMeshAgent agent;
 
         private List<Roach> roaches = new List<Roach>();
+        private List<Collider> obstacles = new List<Collider>();
 
         [SerializeField] private int amountToSpawn = 5;
         [SerializeField] private float walkRadius = 3f;
+
+        [SerializeField] private float maxSpawnDistance = 1f;
+
+        [SerializeField] private LayerMask layersToCheck;
 
         void Start()
         {
@@ -26,11 +31,64 @@ namespace SpiderSim
                 Debug.Log(spawnPoint);
                 IPooledObject roachObj = objectPooler.SpawnFromPool("Roach", spawnPoint, Quaternion.identity);
                 Roach roach = roachObj.GameObject().GetComponent<Roach>();
-                roach.previousTarget = spawnPoint;
                 roach.GetNewDestination();
+                roach.previousTarget = spawnPoint;
                 roach.AssignSpawner(this);
                 roaches.Add(roach);
             }
+        }
+        void Update()
+        {
+            CheckSurroundings();
+        }
+
+        private void CheckSurroundings()
+        {
+            obstacles.Clear();
+            obstacles.AddRange(Physics.OverlapSphere(transform.position, maxSpawnDistance, layersToCheck));
+        }
+
+        public Vector3 GetNewDestination()
+        {
+            float minDistance = maxSpawnDistance / 3;
+            Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxSpawnDistance);
+            Vector3 destination = transform.TransformPoint(localDestination);
+
+            bool destinationOK = false;
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (!CheckNewDestination(destination))
+                {
+                    localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxSpawnDistance);
+                    destination = transform.TransformPoint(localDestination);
+                }
+                else if (CheckNewDestination(destination))
+                {
+                    destinationOK = true;
+                    break;
+                }
+            }
+
+            if (!destinationOK)
+            {
+                Debug.Log("Fly couldn't find a spot");
+            }
+
+            return destination;
+        }
+
+        private bool CheckNewDestination(Vector3 destination)
+        {
+            foreach (Collider col in obstacles)
+            {
+                if (col.bounds.Contains(destination))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public Vector3 GetStartingPoint()
@@ -42,6 +100,7 @@ namespace SpiderSim
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, walkRadius);
+            Gizmos.DrawWireSphere(transform.position, maxSpawnDistance);
         }
     }
 }
