@@ -57,9 +57,6 @@ MonoBehaviour:
   - tag: Ant
     prefab: {fileID: 7159923769031619592, guid: c0d10a5567aa39d4ea1cec4520247645, type: 3}
     size: 10
-  - tag: Roach
-    prefab: {fileID: 5085512613722808284, guid: 467d21e8fdb1d0e4c9dbf4a52a4fb770, type: 3}
-    size: 5
 --- !u!114 &1417718182
 MonoBehaviour:
   m_ObjectHideFlags: 0

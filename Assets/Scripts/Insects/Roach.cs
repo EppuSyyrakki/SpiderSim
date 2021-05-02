@@ -31,6 +31,8 @@ namespace SpiderSim
 
         public void Start()
         {
+            previousTarget = transform.position;
+            GetNewDestination();
             timer = timerDuration;
         }
 
@@ -106,12 +108,6 @@ namespace SpiderSim
         private void OnTriggerEnter(Collider other)
         {
             
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.gray;
-            Gizmos.DrawWireSphere(transform.position, maxDistance);
         }
     }
 }

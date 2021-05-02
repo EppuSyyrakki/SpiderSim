@@ -33,7 +33,7 @@ namespace SpiderSim
                 Roach roach = roachObj.GameObject().GetComponent<Roach>();
                 roach.GetNewDestination();
                 roach.previousTarget = spawnPoint;
-                roach.AssignSpawner(this);
+                //roach.AssignSpawner(this);
                 roaches.Add(roach);
             }
         }
@@ -94,13 +94,6 @@ namespace SpiderSim
         public Vector3 GetStartingPoint()
         {
             return transform.position;
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(transform.position, walkRadius);
-            Gizmos.DrawWireSphere(transform.position, maxSpawnDistance);
         }
     }
 }
