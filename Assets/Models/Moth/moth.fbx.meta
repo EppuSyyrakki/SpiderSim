@@ -6,7 +6,28 @@ ModelImporter:
   - first:
       74: -3009384334144706389
     second: Moth|ArmatureAction
-  externalObjects: {}
+  - first:
+      74: -9102582868956235450
+    second: Moth|PointAction
+  - first:
+      74: -200390855955158822
+    second: Moth|SpotAction
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BOdy brown
+    second: {fileID: 2100000, guid: 4600e042041c7d6478e50de6368073f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Siivet
+    second: {fileID: 2100000, guid: a75d056ecfcd6674e8c2d174ef114eb3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stripe
+    second: {fileID: 2100000, guid: 1f011056f0b4e17408a16523856fb8ce, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
