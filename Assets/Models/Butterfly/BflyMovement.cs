@@ -16,9 +16,12 @@ public class BflyMovement : MonoBehaviour
 
         Quaternion targetRotation = Quaternion.identity;
         Vector3 targetDirection = (target.position - transform.position).normalized;
-        targetRotation = Quaternion.LookRotation(targetDirection);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360*Time.deltaTime);
+        if (targetDirection != Vector3.zero)
+        {
+            targetRotation = Quaternion.LookRotation(targetDirection);
 
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360 * Time.deltaTime);
+        }
 
         /*
         // the second argument, upwards, defaults to Vector3.up
