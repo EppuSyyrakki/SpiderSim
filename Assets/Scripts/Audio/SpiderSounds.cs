@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,21 +10,44 @@ namespace SpiderSim.Audio
 	    [FMODUnity.EventRef]
 	    public string spiderWalk, spiderEat;
 
-	    private SFX walk;
-	    private SFX eat;
-        
-        // Start is called before the first frame update
+	    [SerializeField]
+	    private Transform soundSource;
+
+	    private SFX walk = new SFX();
+	    private SFX eat = new SFX();
+
+	    private List<SpiderStep> feet = new List<SpiderStep>();
+
+	    private void OnEnable()
+	    {
+		    feet.AddRange(GetComponentsInChildren<SpiderStep>());
+
+			foreach (var foot in feet)
+		    {
+			    foot.Stepped += OnStepTriggered;
+		    }
+	    }
+
+	    private void OnDisable()
+	    {
+			foreach (var foot in feet)
+			{
+				foot.Stepped -= OnStepTriggered;
+			}
+		}
+
+	    // Start is called before the first frame update
         void Start()
         {
 	        Rigidbody rb = GetComponent<Rigidbody>();
-            walk.Init(spiderWalk, null, rb);
-            eat.Init(spiderEat, null, rb);
+            walk.Init(spiderWalk, soundSource, rb);
+            eat.Init(spiderEat, soundSource, rb);
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnStepTriggered()
         {
-
+			
+            walk.Play(gameObject);
         }
     }
 }

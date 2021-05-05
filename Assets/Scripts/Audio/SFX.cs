@@ -22,10 +22,7 @@ namespace SpiderSim.Audio
 
 			if (SFXInstance.isValid())
 			{
-				if (transform != null || rb != null)
-				{
-					FMODUnity.RuntimeManager.AttachInstanceToGameObject(SFXInstance, transform, rb);
-				}
+				FMODUnity.RuntimeManager.AttachInstanceToGameObject(SFXInstance, transform, rb);
 			}
 			else
 			{
@@ -43,8 +40,9 @@ namespace SpiderSim.Audio
 			}
 		}
 
-		public void Play(float volume = 1f)
+		public void Play(GameObject go, float volume = 1f)
 		{
+			SFXInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(go));
 			SFXInstance.setVolume(volume);
 			SFXInstance.start();
 		}
