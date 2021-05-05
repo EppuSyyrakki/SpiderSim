@@ -512,14 +512,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 308868170, guid: bafe01d9491f4724e8f0a7973f293d81, type: 3}
-      propertyPath: camLowerAngleMargin
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 308868170, guid: bafe01d9491f4724e8f0a7973f293d81, type: 3}
-      propertyPath: camUpperAngleMargin
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8634589293312570784, guid: bafe01d9491f4724e8f0a7973f293d81, type: 3}
       propertyPath: m_Name
       value: Player
