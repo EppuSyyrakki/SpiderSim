@@ -31,6 +31,7 @@ namespace SpiderSim
 
         public void Start()
         {
+            rb = GetComponent<Rigidbody>();
             previousTarget = transform.position;
             GetNewDestination();
             timer = timerDuration;
