@@ -41,6 +41,8 @@ namespace SpiderSim
 
             if (canMove)
             {
+
+
                 if (distance > minDistance)
                 {
                     Move();
@@ -77,6 +79,12 @@ namespace SpiderSim
         {
             SetTargetOffSet();
 
+            gameObject.transform.LookAt(targetVector);
+            gameObject.transform.position += gameObject.transform.forward * moveSpeed * Time.deltaTime;
+        }
+
+        public void UpdateMovingdirection()
+        {
             gameObject.transform.LookAt(targetVector);
             gameObject.transform.position += gameObject.transform.forward * moveSpeed * Time.deltaTime;
         }
