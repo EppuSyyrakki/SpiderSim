@@ -92,7 +92,6 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
-                Debug.Log("Roach collided with web");
                 canMove = false;
             }
             else if (other.collider.CompareTag("Ant"))

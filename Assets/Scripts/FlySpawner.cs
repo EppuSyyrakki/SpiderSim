@@ -59,8 +59,6 @@ namespace SpiderSim
 	        Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxDistance);
 	        Vector3 destination = transform.TransformPoint(localDestination);
 
-            bool destinationOK = false;
-
             for (int i = 0; i < 10; i++)
             {
                 if (!CheckNewDestination(destination))
@@ -70,14 +68,8 @@ namespace SpiderSim
                 }
                 else if (CheckNewDestination(destination))
                 {
-                    destinationOK = true;
                     break;
                 }
-            }
-
-            if (!destinationOK)
-            {
-
             }
 
             return destination;

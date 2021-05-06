@@ -45,7 +45,6 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
-                Debug.Log("Fly collided with web");
                 canMove = false;
             }
             else
