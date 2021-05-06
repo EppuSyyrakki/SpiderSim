@@ -41,6 +41,11 @@ namespace SpiderSim.Player
 		{
 			_input.Update();
 
+			if (_input.ShootWeb == PlayerInput.Button.Down && ninjaRope.HasCurrentWeb)
+			{
+				ninjaRope.AttachCurrentWeb();
+			}
+
 			if (_input.Jump == PlayerInput.Button.Down)
 			{
 				spider.Jump();
@@ -61,11 +66,6 @@ namespace SpiderSim.Player
 				{
 					Shoot();
 				}
-			}
-			
-			if (_input.AttachWeb == PlayerInput.Button.Down)
-			{
-				ninjaRope.AttachCurrentWeb();
 			}
 		}
 

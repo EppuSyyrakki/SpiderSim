@@ -18,7 +18,9 @@ namespace SpiderSim.Player
         [SerializeField]
         private LayerMask ignoreLayer;
 
-		private void Awake()
+        public bool HasCurrentWeb => _currentWeb != null;
+
+        private void Awake()
 		{
 			_player = transform.parent.gameObject.GetComponent<PlayerController>();
 		}
