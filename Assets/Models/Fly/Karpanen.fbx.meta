@@ -1,27 +1,12 @@
 fileFormatVersion: 2
-guid: 1daaff5c348eb46468c8c0d7466dfc0f
+guid: 7abcae12e5ec8374a8f55225f8ff5e9f
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 4781951162920444690
     second: Armature|ArmatureAction
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Body
-    second: {fileID: 2100000, guid: 0427376513f7f8045958b7b506fd2fc9, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Siivet
-    second: {fileID: 2100000, guid: 1bb8a0147f454fd47a305b2e1c62641f, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: eye
-    second: {fileID: 2100000, guid: 530cb3eddd693f34bb5f6df659105d42, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
