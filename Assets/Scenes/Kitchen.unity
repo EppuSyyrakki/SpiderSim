@@ -1123,7 +1123,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228441253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.66, y: -0.107, z: -21.05}
+  m_LocalPosition: {x: 6.98, y: 0.003, z: -17.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1406373624}
@@ -3536,6 +3536,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
+      propertyPath: pools.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 4201622251848961345, guid: bd18b8c8c10fb7e4c9b881cf49e262d9, type: 3}
+    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
+      propertyPath: pools.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 2693112920146935576, guid: b176c172b3d540d41b4c3ada3789f678, type: 3}
+    - target: {fileID: 6626397296901511327, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
+      propertyPath: pools.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 5521201477455312895, guid: 32a173ed5638efc48ab5d9e5dfef355b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 422f47d0a017a0c45a58a4cb08ac8779, type: 3}
 --- !u!850595691 &798119026

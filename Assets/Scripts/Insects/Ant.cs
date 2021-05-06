@@ -67,6 +67,10 @@ namespace SpiderSim
                     }
                 }
             }
+            else
+            {
+                StopMovement();
+            }
         }
 
         public override void Move()

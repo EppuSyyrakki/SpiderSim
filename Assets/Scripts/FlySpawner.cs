@@ -77,7 +77,7 @@ namespace SpiderSim
 
             if (!destinationOK)
             {
-                Debug.Log("Fly couldn't find a spot");
+
             }
 
             return destination;

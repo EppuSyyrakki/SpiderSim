@@ -80,7 +80,6 @@ namespace SpiderSim
 
             if (!destinationOK)
             {
-                Debug.Log("Didn't find a new target, go to previous");
                 Vector3 temporarySave = currentTarget;
                 currentTarget = previousTarget;
                 previousTarget = temporarySave;
@@ -92,6 +91,7 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
+                Debug.Log("Roach collided with web");
                 canMove = false;
             }
             else if (other.collider.CompareTag("Ant"))
@@ -99,15 +99,6 @@ namespace SpiderSim
                 GetNewDestination();
                 timer = timerDuration;
             }
-            else
-            {
-                //Debug.Log("Roach collided with: " + other.gameObject.name);
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            
         }
     }
 }
