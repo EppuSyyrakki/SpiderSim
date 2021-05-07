@@ -3769,7 +3769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a17a1cdc778704d81c6704c2446b6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showDebug: 0
+  showDebug: 1
   speed: 4
   turnSpeed: 3.6
   walkDrag: 0.9
@@ -3792,7 +3792,7 @@ MonoBehaviour:
   - {fileID: 1324680883}
   - {fileID: 49142272}
   - {fileID: 90793497}
-  bodyOffsetHeight: 0.001
+  bodyOffsetHeight: 0.004
   legCentroidAdjustment: 1
   legCentroidSpeed: 20
   legCentroidNormalWeight: 0.3

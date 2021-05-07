@@ -36,7 +36,7 @@ namespace SpiderSim.Player
 			{
 				_currentWeb.beginning = transform.position;
 
-                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, ~ignoreLayer))
+                if (Physics.Linecast(_currentWeb.beginning, _currentWeb.end, out RaycastHit hit, ~ignoreLayer.value))
                 {
 					if (Vector3.Distance(hit.point, latestAttachPoint) < attachTolerance) return;
 

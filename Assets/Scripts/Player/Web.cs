@@ -49,11 +49,15 @@ namespace SpiderSim.Player
             // set this object's forward to face the end point and move the object itself to halfway between
             // beginning and end. This is done so the collider is in the right position and rotation.
 	        // TODO: end - beginning might be zero, logs a warning, FIX
+	        float endRoom = colliderEndSpace;
+
+            if (!attached) endRoom = colliderEndSpace * 5;
+
             transform.forward = end - beginning;
 	        transform.position = (beginning + end) / 2;
             _line.SetPosition(0, beginning);
             _line.SetPosition(1, end);
-            float length = Mathf.Abs(Vector3.Distance(beginning, end) - colliderEndSpace);
+            float length = Mathf.Abs(Vector3.Distance(beginning, end) - endRoom);
             Vector3 size = _collider.size;
             _collider.size = new Vector3(size.x, size.y, length);
 
