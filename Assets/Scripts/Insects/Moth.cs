@@ -52,7 +52,6 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
-                Debug.Log("Moth collided with web");
                 canMove = false;
             }
             else

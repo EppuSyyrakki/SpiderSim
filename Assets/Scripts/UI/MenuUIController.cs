@@ -9,21 +9,18 @@ namespace SpiderSim.UI
     {
         public void LoadKitchen()
         {
-            Debug.Log("Loading kitchen");
             SceneManager.LoadScene(1);
             Cursor.visible = false;
         }
 
         public void LoadBathroom()
         {
-            Debug.Log("Loading bathroom");
             SceneManager.LoadScene(2);
             Cursor.visible = false;
         }
 
         public void Quit()
         {
-            Debug.Log("Quit pressed");
             Application.Quit();
         }
 

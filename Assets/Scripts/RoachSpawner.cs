@@ -15,7 +15,6 @@ namespace SpiderSim
         private List<Collider> obstacles = new List<Collider>();
 
         [SerializeField] private int amountToSpawn = 5;
-        [SerializeField] private float walkRadius = 3f;
 
         [SerializeField] private float maxSpawnDistance = 1f;
 
@@ -54,8 +53,6 @@ namespace SpiderSim
             Vector3 localDestination = Random.insideUnitSphere * Random.Range(minDistance, maxSpawnDistance);
             Vector3 destination = transform.TransformPoint(localDestination);
 
-            bool destinationOK = false;
-
             for (int i = 0; i < 10; i++)
             {
                 if (!CheckNewDestination(destination))
@@ -65,14 +62,8 @@ namespace SpiderSim
                 }
                 else if (CheckNewDestination(destination))
                 {
-                    destinationOK = true;
                     break;
                 }
-            }
-
-            if (!destinationOK)
-            {
-                Debug.Log("Fly couldn't find a spot");
             }
 
             return destination;

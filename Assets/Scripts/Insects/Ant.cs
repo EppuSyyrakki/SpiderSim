@@ -31,6 +31,14 @@ namespace SpiderSim
         {
             offSet = Random.Range(minOffSet, maxOffSet);
             moveSpeed = Random.Range(minSpeed, maxSpeed);
+
+            Roach[] roaches = FindObjectsOfType<Roach>();
+
+            foreach (var roach in roaches)
+            {
+                Physics.IgnoreCollision(roach.GetComponent<Collider>(), GetComponent<Collider>());
+            }
+            
         }
 
         public override void Update()
@@ -41,6 +49,14 @@ namespace SpiderSim
 
             if (canMove)
             {
+                // In case collision sends the ant flying
+                if (transform.position.y > 3f)
+                {
+                    Vector3 height = transform.position;
+                    height.y = spawner.transform.position.y;
+                    transform.position = height;
+                }
+
                 if (distance > minDistance)
                 {
                     Move();
@@ -66,6 +82,10 @@ namespace SpiderSim
                         }
                     }
                 }
+            }
+            else
+            {
+                StopMovement();
             }
         }
 
@@ -98,12 +118,7 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
-                Debug.Log("Ant collided with web");
                 canMove = false;
-            }
-            else
-            {
-                Debug.Log("Ant collided");
             }
         }
     }

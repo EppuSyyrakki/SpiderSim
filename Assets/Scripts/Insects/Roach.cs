@@ -31,6 +31,7 @@ namespace SpiderSim
 
         public void Start()
         {
+            rb = GetComponent<Rigidbody>();
             previousTarget = transform.position;
             GetNewDestination();
             timer = timerDuration;
@@ -80,7 +81,6 @@ namespace SpiderSim
 
             if (!destinationOK)
             {
-                Debug.Log("Didn't find a new target, go to previous");
                 Vector3 temporarySave = currentTarget;
                 currentTarget = previousTarget;
                 previousTarget = temporarySave;
@@ -99,15 +99,6 @@ namespace SpiderSim
                 GetNewDestination();
                 timer = timerDuration;
             }
-            else
-            {
-                //Debug.Log("Roach collided with: " + other.gameObject.name);
-            }
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            
         }
     }
 }

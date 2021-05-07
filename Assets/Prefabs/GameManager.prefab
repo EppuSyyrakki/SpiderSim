@@ -46,16 +46,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pools:
   - tag: Fly
-    prefab: {fileID: 7436507554900612730, guid: 78c52213bc3fafd40a929da531056c4f, type: 3}
+    prefab: {fileID: 4201622251848961345, guid: bd18b8c8c10fb7e4c9b881cf49e262d9, type: 3}
     size: 50
   - tag: Web
     prefab: {fileID: 5201851449299070449, guid: 30afe16fd999bd24dbe2c137a0de810c, type: 3}
     size: 100
   - tag: Moth
-    prefab: {fileID: 7436507554900612730, guid: 9456bfc0e44a2504db6d251fb66b0dae, type: 3}
+    prefab: {fileID: 2693112920146935576, guid: b176c172b3d540d41b4c3ada3789f678, type: 3}
     size: 50
   - tag: Ant
-    prefab: {fileID: 7159923769031619592, guid: c0d10a5567aa39d4ea1cec4520247645, type: 3}
+    prefab: {fileID: 5521201477455312895, guid: 32a173ed5638efc48ab5d9e5dfef355b, type: 3}
     size: 10
 --- !u!114 &1417718182
 MonoBehaviour:
