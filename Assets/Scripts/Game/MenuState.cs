@@ -7,8 +7,6 @@ namespace SpiderSim.Game
 {
 	public class MenuState : GameState
 	{
-		private bool enterGame = false;
-
 		public override GameState Update()
 		{
 			return null;
@@ -22,11 +20,6 @@ namespace SpiderSim.Game
 		public override void OnStateExit()
 		{
 			base.OnStateExit();
-		}
-
-		public void ToGame()
-		{
-			enterGame = true;
 		}
 	}
 }
