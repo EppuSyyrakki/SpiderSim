@@ -53,6 +53,15 @@ namespace SpiderSim
         {
             return gameObject;
         }
+
+        private void OnCollisionExit(Collision other)
+        {
+            if (other.collider.CompareTag("Web"))
+            {
+                GetComponent<Animator>().speed = 1;
+                canMove = true;
+            }
+        }
     }
 
 }

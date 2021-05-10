@@ -118,6 +118,7 @@ namespace SpiderSim
         {
             if (other.collider.CompareTag("Web"))
             {
+                GetComponent<Animator>().speed = 0;
                 canMove = false;
             }
         }
