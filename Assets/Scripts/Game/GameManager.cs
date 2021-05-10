@@ -84,7 +84,7 @@ namespace SpiderSim.Game
 
         private void ReturnToMainMenu()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
 		//public void ChangeScene(int levelNumber)

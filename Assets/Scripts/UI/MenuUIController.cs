@@ -9,13 +9,13 @@ namespace SpiderSim.UI
     {
         public void LoadKitchen()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             Cursor.visible = false;
         }
 
         public void LoadBathroom()
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
             Cursor.visible = false;
         }
 
