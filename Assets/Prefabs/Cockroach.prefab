@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: -5828255537344354940}
   - component: {fileID: 1390699831036331402}
   - component: {fileID: 1891641481667586880}
+  - component: {fileID: 5192213314580203562}
   m_Layer: 0
   m_Name: Cockroach
   m_TagString: Untagged
@@ -222,6 +223,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5192213314580203562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888295428153142018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576aca83afea85641b40150a1992fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundType: 0
+  insectWalk: event:/InsectWalk
+  insectWalkFast: event:/InsectWalkFast
+  flyBuzz: event:/FliesBuzzing
+  flyBuzzLow: event:/FliesBuzzingSlow
 --- !u!1 &904744985975566036
 GameObject:
   m_ObjectHideFlags: 0

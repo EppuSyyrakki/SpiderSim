@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: -250769253491336901}
   - component: {fileID: -2615321229330016695}
   - component: {fileID: 1967597093198491468}
+  - component: {fileID: 1227166659881811202}
   m_Layer: 0
   m_Name: FlyNEW
   m_TagString: Untagged
@@ -197,6 +198,23 @@ CapsuleCollider:
   m_Height: 5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -1}
+--- !u!114 &1227166659881811202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4201622251848961345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576aca83afea85641b40150a1992fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundType: 2
+  insectWalk: event:/InsectWalk
+  insectWalkFast: event:/InsectWalkFast
+  flyBuzz: event:/FliesBuzzing
+  flyBuzzLow: event:/FliesBuzzingSlow
 --- !u!1 &4450806536051798980
 GameObject:
   m_ObjectHideFlags: 0

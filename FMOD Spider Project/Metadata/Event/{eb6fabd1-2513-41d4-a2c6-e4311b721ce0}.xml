@@ -126,6 +126,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{7331e69a-a86c-4075-b2a9-05eda0099d03}" />
 	<object class="SingleSound" id="{2868ad9d-e038-46c7-af77-df568d7f1b1a}">
+		<property name="looping">
+			<value>true</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{f11f4587-4162-478b-9dd4-3c9663aa92ab}</destination>
 		</relationship>

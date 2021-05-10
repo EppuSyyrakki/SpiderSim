@@ -886,6 +886,7 @@ GameObject:
   - component: {fileID: 7298639616442857211}
   - component: {fileID: -1910786963838761971}
   - component: {fileID: 866859447208787652}
+  - component: {fileID: -3716651190496408672}
   m_Layer: 0
   m_Name: AntNEW
   m_TagString: Untagged
@@ -978,6 +979,23 @@ CapsuleCollider:
   m_Height: 8
   m_Direction: 2
   m_Center: {x: 0, y: -0.3, z: -3}
+--- !u!114 &-3716651190496408672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5521201477455312895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576aca83afea85641b40150a1992fd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundType: 1
+  insectWalk: event:/InsectWalk
+  insectWalkFast: event:/InsectWalkFast
+  flyBuzz: event:/FliesBuzzing
+  flyBuzzLow: event:/FliesBuzzingSlow
 --- !u!1 &5774980719998207830
 GameObject:
   m_ObjectHideFlags: 0
