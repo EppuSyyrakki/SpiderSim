@@ -3919,6 +3919,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spiderWalk: event:/spiderWalk
   spiderEat: event:/spiderEating
+  spiderShoot: event:/shootingWeb
   soundSource: {fileID: 8634589293028226328}
 --- !u!1 &8634589293442604250
 GameObject:
@@ -4447,6 +4448,7 @@ GameObject:
   - component: {fileID: 308868170}
   - component: {fileID: 4104822328290089619}
   - component: {fileID: 8592250764136019975}
+  - component: {fileID: 3792700060212233579}
   m_Layer: 3
   m_Name: Spider Controller Camera
   m_TagString: MainCamera
@@ -4598,6 +4600,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
   ListenerNumber: -1
+--- !u!114 &3792700060212233579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634589293613505106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde9db81c354fd743b8561172deb4f8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneMusic: 0
+  introMusic: event:/Music_intro
+  kitchenMusic: event:/Music_kitchen
+  bathroomMusic: event:/Music_bathroom
 --- !u!1 &8634589293781861511
 GameObject:
   m_ObjectHideFlags: 0

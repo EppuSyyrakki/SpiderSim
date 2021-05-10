@@ -20,6 +20,8 @@ namespace SpiderSim.Player
 
         public bool HasCurrentWeb => _currentWeb != null;
 
+        public event System.Action WebShot;
+
         private void Awake()
 		{
 			_player = transform.parent.gameObject.GetComponent<PlayerController>();
@@ -114,6 +116,8 @@ namespace SpiderSim.Player
 				Quaternion.LookRotation(_target - ownPos));
 			_hasFired = true;
 			_lerpT = 0;
+
+			if (WebShot != null) WebShot();
 		}
 
 		public void AttachCurrentWeb()

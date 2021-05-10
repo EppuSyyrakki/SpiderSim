@@ -126,6 +126,9 @@
 	</object>
 	<object class="MixerBusPanner" id="{ae3a0228-e554-4127-b67f-c7e1ebaea6f7}" />
 	<object class="SingleSound" id="{defff6a7-46aa-4457-918f-1ca22e883eb3}">
+		<property name="looping">
+			<value>true</value>
+		</property>
 		<relationship name="audioFile">
 			<destination>{53e1e365-6d2f-46ab-a261-33a6415c564d}</destination>
 		</relationship>
@@ -138,6 +141,10 @@
 	</object>
 	<object class="MixerBusPanner" id="{fbbb22a8-0e29-475c-9735-1d0bff960bb5}" />
 	<object class="MixerBusFader" id="{13dac898-d661-4a7c-990d-e60da9d1f48f}" />
-	<object class="SpatialiserEffect" id="{512b83e0-b756-46f4-bfb0-d9a47020b833}" />
+	<object class="SpatialiserEffect" id="{512b83e0-b756-46f4-bfb0-d9a47020b833}">
+		<property name="distanceRolloffType">
+			<value>4</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{b58ece40-785b-4512-bf0f-fdd2e7cb8937}" />
 </objects>
